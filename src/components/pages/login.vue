@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-      
+     
   </div>
 </template>
 
@@ -19,9 +19,11 @@ export default {
     }
 }
 </script>
+
 <style lang="scss" scoped>
+    @import '@/assets/css/adapt.scss';
     .login {
-        
+        font-size: rem(20px);
     }
 </style>
 
