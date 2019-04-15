@@ -4,9 +4,9 @@ const BodyParser = require('koa-bodyparser');
 const cors = require('koa2-cors');
 const path = require('path');
 
+require('./db');
 const routes = require('./router');
 const app = new Koa();
-
 //跨域
 app.use(cors({
     origin: function (ctx) {
@@ -21,8 +21,7 @@ app.use(cors({
 
 
 //post解析
-app.use(BodyParser());
-
+app.use(BodyParser()); 
 routes(app);
 
 //黑洞路由

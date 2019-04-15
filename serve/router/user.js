@@ -1,13 +1,7 @@
 const Router = require('koa-router');
-// const api = require('../api/');
 const router = new Router();
+let User = require('../api/user');
 
-router
-.post('/login',async(ctx)=>{
-    let user = ctx.request.body;
-    console.log(user);
-})
-.get('/infor',async(ctx)=>{
-});
+router.post('/login', User.login)
 
 module.exports = router;
