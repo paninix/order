@@ -65,7 +65,6 @@ export default {
         },
         // 登录&注册
         login() {
-            console.log(this.user);
             // 注册
             if(this.isRegister){
                 userCache.register(this.user)
@@ -79,7 +78,6 @@ export default {
                 userCache.login(this.user)
                 .then(res=>{
                     this.$vux.toast.text(res.msg)
-                    console.log(res);
                 }).catch(err=>{
                     this.$vux.toast.text(err.msg)
                 });
@@ -111,6 +109,11 @@ export default {
             background-color: #FFC107;
             &_disabled {
                 opacity: .6;
+            }
+            &:active {
+                color: #fff;
+                background-color: #FFC107;
+                opacity: .8;
             }
         }
     }

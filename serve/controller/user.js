@@ -13,7 +13,7 @@ module.exports =  {
     },
     async register(ctx) {
         let user = ctx.request.body;
-        let isRegister = await User.findOne({username:user.username});
+        let isRegister = await User.findOne({phone:user.phone});
         if(isRegister) {
             ctx.body = {'status':100, 'data': {msg:'该手机号已经被注册'}};
             return;
