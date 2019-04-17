@@ -5,7 +5,7 @@
 import {COMMOM} from './types/' //从types.js中引用常量
 
  const state = {
-    identity: 0 // 登录账号类型：0未登录 1为用户 2为商家 3为骑手
+    identity: 1 // 登录账号类型：0未登录 1为用户 2为商家 3为骑手
  }
 
  const getters={
