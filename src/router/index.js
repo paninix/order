@@ -12,14 +12,11 @@ const router = new Router({
 
 // 请求前
 router.beforeEach((res,from,next)=>{
-  let isLogin = store.state.isLogin;
-
+  let isLogin = store.state.identity;
   if(!isLogin && res.path !== '/login'){
     return next({path:'/login'})
   }
-
   next();
-
 })
 // 请求后
 router.afterEach((res, from, next)=>{

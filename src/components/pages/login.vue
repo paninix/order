@@ -1,5 +1,5 @@
 <template>
-  <div class="login">
+  <div class="pages-login">
     <section class="login-log">
         <img src="../../assets/imgs/log.png" alt="">
     </section>
@@ -22,6 +22,7 @@
 import userCache from '@/axios/user/cache';
 import {Group, XButton, XInput, Actionsheet} from 'vux';
 export default {
+    name: 'pages-login',
     components: {
         Group,
         XButton,
@@ -33,15 +34,15 @@ export default {
             user: {
                 phone: '',
                 password: '',
-                identity: 0    // 0为用户 1为商家 2为骑手
+                identity: 0    // 1为用户 2为商家 3为骑手
             },
             sheet: {
                 isShow: false,
                 selected: '',
                 menus: {
-                    0: '用户',
-                    1: '商家',
-                    2: '骑手'
+                    1: '用户',
+                    2: '商家',
+                    3: '骑手'
                 }
             },
             isRegister: false,    // false为登录 true为注册
@@ -59,6 +60,7 @@ export default {
         }
     },
     methods: {
+        // 改变账号类型
         changeIdentity(index, value) {
             this.user.identity = index;
             this.sheet.selected = value;
@@ -69,19 +71,27 @@ export default {
             if(this.isRegister){
                 userCache.register(this.user)
                 .then(res=>{
-                    this.$vux.toast.text(res.msg)
+                    this.$vux.toast.text(res.msg);
+                    this.jumpHome(res.identity);
                 }).catch(err=>{
-                    this.$vux.toast.text(err.msg)
+                    this.$vux.toast.text(err.msg);
                 });
             } else { // 登录
                 delete this.user.identity;
                 userCache.login(this.user)
                 .then(res=>{
-                    this.$vux.toast.text(res.msg)
+                    this.$vux.toast.text(res.msg);
+                    this.jumpHome(res.identity);
                 }).catch(err=>{
-                    this.$vux.toast.text(err.msg)
+                    this.$vux.toast.text(err.msg);
                 });
             }
+        },
+        // 根据不同的类型跳转不同的主页
+        jumpHome(identity) {
+            this.$store.dispatch('userLogin', identity);
+            let path = ['/customer', '/seller', '/taker'][identity-1];
+            this.$router.push(path);
         }
     },
     created() {
@@ -90,19 +100,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .login {
-        &-log {
-            text-align: center;
-        }
-        &-content {
-            padding-left: 10%;
-            padding-right: 10%;
-            .brief {
-                margin-top: 10px;
-                text-align: right;
-                font-size: 14px;
-                color: #969799;
-            }
+    .login-log {
+        text-align: center;
+    }
+    .login-content {
+        padding-left: 10%;
+        padding-right: 10%;
+        .brief {
+            margin-top: 10px;
+            text-align: right;
+            font-size: 14px;
+            color: #969799;
         }
         .weui-btn {
             color: #fff;
@@ -117,5 +125,6 @@ export default {
             }
         }
     }
+    
 </style>
 
