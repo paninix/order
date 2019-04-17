@@ -1,6 +1,10 @@
 export default {
-	'user-userLogin': {
+	'user-login': {
 		url: 'user/login',
+		method: 'post'
+	},
+	'user-register': {
+		url: 'user/register',
 		method: 'post'
 	}
 }

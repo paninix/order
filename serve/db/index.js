@@ -1,13 +1,14 @@
 let mongoose = require('mongoose');
-let mongodb = "mongodb://localhost:27017/order";
+const DB_URL = "mongodb://localhost:27017/order";
 
-new Promise(function(reslove, reject){
-    mongoose.connect(mongodb,{useNewUrlParser:true}, (err)=>{
-        err ? reject(err) : reslove();
+module.exports = (function(){
+    let db=mongoose.connect(DB_URL,{useNewUrlParser:true},err=>{
+        if(err) {
+            console.log('Connection Error:' + err);
+        } else {
+            console.log('Connection success!');
+        }
     });
-}).then(()=>{
-    console.log('Connection success!');
-}).catch((err)=>{
-    console.log('Connection Error:' + err);
-});
-require('../model/user.js');
+    require('../model/user.js');
+    return db;
+})();

@@ -4,7 +4,7 @@ const BodyParser = require('koa-bodyparser');
 const cors = require('koa2-cors');
 const path = require('path');
 
-require('./db');
+const db = require('./db');
 const routes = require('./router');
 const app = new Koa();
 //跨域

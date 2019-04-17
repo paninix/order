@@ -6,13 +6,12 @@ import router from './router';
 
 Vue.config.productionTip = false;
 
-import Vant from 'vant';
-import 'vant/lib/index.css';
+import { AlertPlugin, ToastPlugin } from 'vux'
+Vue.use(AlertPlugin)
+Vue.use(ToastPlugin)
 
 import axios from './axios';
 import store from './store';
-
-Vue.use(Vant);
 Vue.$axios = axios;
 
 /* eslint-disable no-new */

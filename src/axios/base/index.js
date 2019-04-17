@@ -9,7 +9,7 @@ axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded
 
 // 判断状态码
 function resultJudge(code) {
-	return code
+	return Vue.$axios.code.CODE_OK.indexOf(code) !== -1;
 }
 // 处理错误公共方法
 function handleErrorCase(err) {

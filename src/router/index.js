@@ -10,17 +10,20 @@ const router = new Router({
   routes
 })
 
-// 路由钩子
-router.beforeEach(({path},from,next)=>{
-
+// 请求前
+router.beforeEach((res,from,next)=>{
   let isLogin = store.state.isLogin;
 
-  if(!isLogin && path !== '/login'){
+  if(!isLogin && res.path !== '/login'){
     return next({path:'/login'})
   }
 
   next();
 
 })
+// 请求后
+router.afterEach((res, from, next)=>{
+  
+}) 
 
 export default router
