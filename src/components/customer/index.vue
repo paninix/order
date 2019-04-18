@@ -1,20 +1,23 @@
 <template>
   <div class="customer-index">
+    <section class="tab-title">
+      <span>{{tabTitle}}</span>
+    </section>
     <router-view/>
-    <bar-swiper :bars="bars"></bar-swiper>
+    <tab-swiper :tabs="tabs" @changeTab="changeTab"></tab-swiper>
   </div>
 </template>
 
 <script>
-import BarSwiper from '@/components/common/barSwiper';
+import TabSwiper from '@/components/common/tabSwiper';
 export default {
   name: 'customer-index',
   components: {
-    BarSwiper
+    TabSwiper
   },
   data() {
     return {
-      bars: [
+      tabs: [
         {
           label: '外卖',
           icon: 'icon-shop',
@@ -28,11 +31,14 @@ export default {
           icon: 'icon-admin',
           path: 'admin'
         }
-      ]
+      ],
+      tabTitle: '外卖'
     }
   },
   methods: {
-    
+    changeTab(label) {
+      this.tabTitle = label;
+    }
   },
   created() {
 
@@ -41,5 +47,10 @@ export default {
 </script>
 
 <style lang="scss">
-  
+  .tab-title {
+    height: 20px;
+    padding: 20px;
+    color: #fff;
+    background: linear-gradient(45deg, #03A9F4,#1D62F0)
+  }
 </style>

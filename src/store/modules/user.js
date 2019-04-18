@@ -2,7 +2,7 @@
  * 用户模块
  */
 
-import {CUSTOMER} from '../types' //从types.js中引用常量
+import {CUSTOMER} from '../types.js' //从types.js中引用常量
 
  const state={
  }

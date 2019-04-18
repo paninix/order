@@ -9,7 +9,7 @@
                 <x-input type="tel" v-model="user.phone" placeholder="请输入手机号" @on-click-clear-icon.native="console.log(22222)"></x-input>
                 <x-input type="password" v-model="user.password" placeholder="请输入密码"></x-input>
                 <x-input v-show="isRegister" v-model="sheet.selected" placeholder="请选择账号类型" :show-clear='false' @on-focus="sheet.isShow=true"></x-input>
-                <x-button :disabled="inputFormat" @click.native="login">{{isRegister?'注册':'登录'}}</x-button>
+                <x-button :gradients="['#1D62F0', '#19D5FD']" :disabled="inputFormat" @click.native="login">{{isRegister?'注册':'登录'}}</x-button>           
             </form>
         </group>
         <actionsheet v-model="sheet.isShow" :menus="sheet.menus" @on-click-menu="changeIdentity"></actionsheet>
@@ -113,14 +113,10 @@ export default {
             color: #969799;
         }
         .weui-btn {
-            color: #fff;
-            background-color: #FFC107;
             &_disabled {
                 opacity: .6;
             }
             &:active {
-                color: #fff;
-                background-color: #FFC107;
                 opacity: .8;
             }
         }

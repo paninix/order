@@ -1,7 +1,7 @@
 <template>
-  <div class="bar-swiper">
+  <div class="tab-swiper">
       <tabbar @on-index-change="onSwiper">
-        <tabbar-item v-for="(item, index) in bars" :key="index" :selected="index === 0">
+        <tabbar-item v-for="(item, index) in tabs" :key="index" :selected="index === 0">
           <i slot="icon" class="iconfont" :class="item.icon"></i>
           <span slot="label">{{item.label}}</span>
         </tabbar-item>
@@ -12,12 +12,12 @@
 <script>
 import {Tabbar, TabbarItem} from 'vux';
 export default {
-  name: 'bar-swiper',
+  name: 'tab-swiper',
   components: {
     Tabbar,
     TabbarItem
   },
-  props: ['bars'],
+  props: ['tabs'],
   data() {
     return {
       
@@ -25,8 +25,9 @@ export default {
   },
   methods: {
     onSwiper(index) {
-      let path = this.bars[index].path;
-      this.$router.push(path);
+      let tab = this.tabs[index];
+      this.$emit('changeTab', tab.label)
+      this.$router.push(tab.path);
     }
   },
   created() {
