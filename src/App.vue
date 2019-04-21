@@ -11,7 +11,7 @@ export default {
 </script>
 
 <style lang="scss">
-  body {
+  body, p{
     margin: 0;
   }
 </style>

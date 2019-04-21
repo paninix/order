@@ -51,6 +51,6 @@ export default {
     height: 20px;
     padding: 20px;
     color: #fff;
-    background: linear-gradient(45deg, #03A9F4,#1D62F0)
+    background: linear-gradient(90deg, #03A9F4,#1D62F0);
   }
 </style>

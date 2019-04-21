@@ -81,16 +81,17 @@ export default {
                 userCache.login(this.user)
                 .then(res=>{
                     this.$vux.toast.text(res.msg);
-                    this.jumpHome(res.identity);
+                    this.jumpHome(res.data);
                 }).catch(err=>{
                     this.$vux.toast.text(err.msg);
                 });
             }
         },
         // 根据不同的类型跳转不同的主页
-        jumpHome(identity) {
-            this.$store.dispatch('userLogin', identity);
-            let path = ['/customer', '/seller', '/taker'][identity-1];
+        jumpHome(data) {
+            this.$store.dispatch('userLogin', data.identity);
+            this.$store.dispatch('userInitBaseInfor', data.baseInfor);
+            let path = ['/customer', '/seller', '/taker'][data.identity-1];
             this.$router.push(path);
         }
     },

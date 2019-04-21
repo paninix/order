@@ -13,18 +13,31 @@ import {COMMON} from './types' //从types.js中引用常量
     // 获取账号登录状态
     loginStatus(state){
         return state.identity;
+    },
+    // 获取用户基本信息
+    getUserBaseInfor(state) {
+        return state.baseInfor;
     }
+    
 }
 
 const actions = {
+    // 用户登录状态
     userLogin({commit}, identity){
         commit(COMMON.USERLOGIN, identity);
+    },
+    // 初始化用户基本信息
+    userInitBaseInfor({commit}, baseInfor) {
+        commit(COMMON.USERINITBASEINFOR, baseInfor);
     }
 }
 
 const mutations={
     [COMMON.USERLOGIN](state, identity){
         state.identity = identity;
+    },
+    [COMMON.USERINITBASEINFOR](state, baseInfor){
+        state.baseInfor = baseInfor;
     }
 }
 

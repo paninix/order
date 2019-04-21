@@ -10,5 +10,6 @@ module.exports = (function(){
         }
     });
     require('../model/user.js');
+    require('../model/customer.js');
     return db;
 })();
