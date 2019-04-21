@@ -25,19 +25,12 @@ const actions = {
     // 用户登录状态
     userLogin({commit}, identity){
         commit(COMMON.USERLOGIN, identity);
-    },
-    // 初始化用户基本信息
-    userInitBaseInfor({commit}, baseInfor) {
-        commit(COMMON.USERINITBASEINFOR, baseInfor);
     }
 }
 
 const mutations={
     [COMMON.USERLOGIN](state, identity){
         state.identity = identity;
-    },
-    [COMMON.USERINITBASEINFOR](state, baseInfor){
-        state.baseInfor = baseInfor;
     }
 }
 

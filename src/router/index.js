@@ -14,7 +14,6 @@ const router = new Router({
 router.beforeEach((res,from,next)=>{
   let isLogin = store.state.identity;
   // let isLogin = 1;
-  console.log(isLogin);
   if(!isLogin && res.path !== '/login'){
     return next({path:'/login'})
   }

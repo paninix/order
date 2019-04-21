@@ -6,7 +6,7 @@
     <section class="login-content">
         <group>
             <form>
-                <x-input type="tel" v-model="user.phone" placeholder="请输入手机号" @on-click-clear-icon.native="console.log(22222)"></x-input>
+                <x-input type="tel" v-model="user.phone" placeholder="请输入手机号"></x-input>
                 <x-input type="password" v-model="user.password" placeholder="请输入密码"></x-input>
                 <x-input v-show="isRegister" v-model="sheet.selected" placeholder="请选择账号类型" :show-clear='false' @on-focus="sheet.isShow=true"></x-input>
                 <x-button :gradients="['#1D62F0', '#19D5FD']" :disabled="inputFormat" @click.native="login">{{isRegister?'注册':'登录'}}</x-button>           
@@ -72,7 +72,7 @@ export default {
                 userCache.register(this.user)
                 .then(res=>{
                     this.$vux.toast.text(res.msg);
-                    this.jumpHome(res.identity);
+                    this.jumpGuide(res.data);
                 }).catch(err=>{
                     this.$vux.toast.text(err.msg);
                 });
@@ -87,11 +87,15 @@ export default {
                 });
             }
         },
+        // 跳转到引导页面
+        jumpGuide(identity) {
+            this.$store.dispatch('userLogin', identity);
+            this.$router.push({path: '/guide', query: this.user });
+        },
         // 根据不同的类型跳转不同的主页
-        jumpHome(data) {
-            this.$store.dispatch('userLogin', data.identity);
-            this.$store.dispatch('userInitBaseInfor', data.baseInfor);
-            let path = ['/customer', '/seller', '/taker'][data.identity-1];
+        jumpHome(identity) {
+            this.$store.dispatch('userLogin', identity);
+            let path = ['/customer', '/seller', '/taker'][identity-1];
             this.$router.push(path);
         }
     },

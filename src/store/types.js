@@ -1,12 +1,11 @@
 // 公共模块
 const COMMON = {
     USERLOGIN: 'USERLOGIN',  //用户登录
-    USERINITBASEINFOR: 'USERINITBASEINFOR' //初始化用户基本信息
 }
 
 //客户端模块
 const CUSTOMER = {
-
+    CUSTOMERINITBASEINFOR: 'CUSTOMERINITBASEINFOR' // 初始化客户端用户基本信息
 }
 
 // 商家端模块

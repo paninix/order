@@ -10,6 +10,7 @@
 
 <script>
 import TabSwiper from '@/components/common/tabSwiper';
+import customerCache from '@/axios/customer/cache';
 export default {
   name: 'customer-index',
   components: {
@@ -41,7 +42,7 @@ export default {
     }
   },
   created() {
-
+    
   }
 }
 </script>

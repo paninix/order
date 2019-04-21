@@ -7,5 +7,8 @@ export default  {
 	},
 	updateBaseInfor(options) {
 		return sendRequest(CACHE_KEY, 'customer-updateBaseInfor',options)
+	},
+	addOneInfor(options) {
+		return sendRequest(CACHE_KEY, 'customer-addOneInfor',options)
 	}
 }

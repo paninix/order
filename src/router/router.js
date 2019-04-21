@@ -1,4 +1,5 @@
 import Login from '@/components/pages/login';   // 登录注册页面
+import Guide from '@/components/pages/guide';   // 引导页面
 
 import SellerIndex from '@/components/seller/index';    // 商家端-首页
 
@@ -16,6 +17,9 @@ export default [
     }, {
         path: '/login',
         component: Login
+    }, {
+        path: '/guide',
+        component: Guide
     }, {
         path: '/seller',
         component: SellerIndex

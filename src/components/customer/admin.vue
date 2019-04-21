@@ -10,8 +10,8 @@
              <x-input disabled text-align="right" title="手机号码" v-model="baseInfor.phone"></x-input>
              <x-input disabled text-align="right" title="余额" v-model="baseInfor.count"></x-input>
           </group>
-          <x-button plain type="primary" v-if="isEdit" @click.native="updateBaseInfor">保存</x-button>
-          <x-button plain type="warn" v-else @click.native="isEdit = true">修改</x-button>
+          <x-button type="primary" v-if="isEdit" @click.native="updateBaseInfor">保存</x-button>
+          <x-button type="warn" v-else @click.native="isEdit = true">修改</x-button>
       </section>
   </div>
 </template>
@@ -34,13 +34,12 @@ export default {
   computed: {
     // 用户基本信息
     baseInfor() {
-        return this.$store.getters.getUserBaseInfor;
+        return this.$store.getters.getCustomerBaseInfor;
     },
   },
   methods: {
     // 修改用户基本信息
     updateBaseInfor() {
-      console.log(customerCache);
         this.isEdit = false;
         customerCache.updateBaseInfor(this.baseInfor)
         .then(res=>{
