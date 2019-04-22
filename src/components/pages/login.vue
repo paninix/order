@@ -1,5 +1,8 @@
 <template>
   <div class="pages-login">
+    <section class="login-bg">
+
+    </section>
     <section class="login-log">
         <img src="../../assets/imgs/log.png" alt="">
     </section>
@@ -12,7 +15,7 @@
                 <x-button :gradients="['#1D62F0', '#19D5FD']" :disabled="inputFormat" @click.native="login">{{isRegister?'注册':'登录'}}</x-button>           
             </form>
         </group>
-        <actionsheet v-model="sheet.isShow" :menus="sheet.menus" @on-click-menu="changeIdentity"></actionsheet>
+        <actionsheet v-model="sheet.isShow" :menus="sheet.menus" @on-click-menu="changeStatus"></actionsheet>
         <div class="brief" @click="isRegister = !isRegister"><span>{{isRegister?'去登录':'去注册'}}</span></div>
     </section>
   </div>
@@ -34,7 +37,7 @@ export default {
             user: {
                 phone: '',
                 password: '',
-                identity: 0    // 1为用户 2为商家 3为骑手
+                status: 0    // 1为用户 2为商家 3为骑手
             },
             sheet: {
                 isShow: false,
@@ -61,8 +64,8 @@ export default {
     },
     methods: {
         // 改变账号类型
-        changeIdentity(index, value) {
-            this.user.identity = index;
+        changeStatus(index, value) {
+            this.user.status = index;
             this.sheet.selected = value;
         },
         // 登录&注册
@@ -72,31 +75,31 @@ export default {
                 userCache.register(this.user)
                 .then(res=>{
                     this.$vux.toast.text(res.msg);
-                    this.jumpGuide(res.data);
+                    this.saveGlobalDatas(this.user.status);
+                    this.$router.push('/guide');
                 }).catch(err=>{
                     this.$vux.toast.text(err.msg);
                 });
             } else { // 登录
-                delete this.user.identity;
+                delete this.user.status;
                 userCache.login(this.user)
                 .then(res=>{
                     this.$vux.toast.text(res.msg);
-                    this.jumpHome(res.data);
+                    this.saveGlobalDatas(res.data);
+                    let path = ['/customer', '/seller', '/taker'][res.data-1]
+                    this.$router.push(path);
                 }).catch(err=>{
                     this.$vux.toast.text(err.msg);
                 });
             }
         },
-        // 跳转到引导页面
-        jumpGuide(identity) {
-            this.$store.dispatch('userLogin', identity);
-            this.$router.push({path: '/guide', query: this.user });
-        },
-        // 根据不同的类型跳转不同的主页
-        jumpHome(identity) {
-            this.$store.dispatch('userLogin', identity);
-            let path = ['/customer', '/seller', '/taker'][identity-1];
-            this.$router.push(path);
+        // 存储登录信息
+        saveGlobalDatas(status) {
+            let globalDatas = {
+                status,
+                phone: this.user.phone
+            };
+            this.$store.dispatch('userGlobalInit', globalDatas);
         }
     },
     created() {
@@ -105,6 +108,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    .login-bg {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        // background: url('../../assets/imgs/bg.jpg') no-repeat;
+        background-size: cover;
+    }
     .login-log {
         text-align: center;
     }
@@ -115,7 +126,7 @@ export default {
             margin-top: 10px;
             text-align: right;
             font-size: 14px;
-            color: #969799;
+            color: #03A9F4;
         }
         .weui-btn {
             &_disabled {

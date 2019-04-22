@@ -1,14 +1,14 @@
 export default {
-	'customer-getBaseInfor': {
-		url: 'customer/getBaseInfor',
+	'customer-getInfor': {
+		url: 'customer/getInfor?phone=',
 		method: 'get'
 	},
-	'customer-updateBaseInfor': {
-		url: 'customer/updateBaseInfor',
+	'customer-updateInfor': {
+		url: 'customer/updateInfor',
 		method: 'post'
 	},
-	'customer-addOneInfor': {
-		url: 'customer/addOneInfor',
+	'customer-addInfor': {
+		url: 'customer/addInfor',
 		method: 'post'
 	}
 }

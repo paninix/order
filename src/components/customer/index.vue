@@ -36,13 +36,26 @@ export default {
       tabTitle: '外卖'
     }
   },
+  computed: {
+    phone() {
+      return this.$store.getters.getUserPhone;
+    }
+  },
   methods: {
     changeTab(label) {
       this.tabTitle = label;
+    },
+    getCustomerInfor() {
+      customerCache.getInfor(this.phone)
+      .then(res=>{
+        this.$store.dispatch('customerInitInfor', res);
+      }).catch(err=>{
+        this.$vux.toast.text(err.msg);
+      });
     }
   },
   created() {
-    
+    this.getCustomerInfor();
   }
 }
 </script>

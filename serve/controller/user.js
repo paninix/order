@@ -10,7 +10,7 @@ module.exports =  {
             ctx.body = {'status':100, 'data': {msg:'用户名或密码错误'}};
             return;
         }
-        ctx.body = {'status':200, 'data': {msg:'登录成功', data: res.identity}};
+        ctx.body = {'status':200, 'data': {msg:'登录成功', data: res.status}};
     },
     async register(ctx) {
         let user = ctx.request.body;
@@ -22,6 +22,6 @@ module.exports =  {
             ctx.body = {'status':100, 'data': {msg:'注册失败'}};
             return;
         }
-        ctx.body = {'status':200, 'data': {msg:'注册成功', data: user.identity}};
+        ctx.body = {'status':200, 'data': {msg:'注册成功'}};
     }
 }

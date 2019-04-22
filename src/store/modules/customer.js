@@ -5,25 +5,25 @@
 import {CUSTOMER} from '../types.js' //从types.js中引用常量
 
 const state = {
-    baseInfor: {}
+    customer: {}
 }
 
 var getters = {
-   getCustomerBaseInfor(state) {
-       return state.baseInfor;
+   getCustomerInfor(state) {
+       return state.customer;
    }
 }
 
 const actions = {
     // 初始化用户基本信息
-    customerInitBaseInfor({commit}, baseInfor) {
-        commit(CUSTOMER.CUSTOMERINITBASEINFOR, baseInfor);
+    customerInitInfor({commit}, customer) {
+        commit(CUSTOMER.CUSTOMERINITINFOR, customer);
     }
 }
 
 const mutations={
-    [CUSTOMER.CUSTOMERINITBASEINFOR](state, baseInfor){
-        state.baseInfor = baseInfor;
+    [CUSTOMER.CUSTOMERINITINFOR](state, customer){
+        state.customer = customer;
     }
 }
 

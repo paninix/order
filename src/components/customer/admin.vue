@@ -5,12 +5,12 @@
       </section>
       <section class="admin-infor">
           <group>
-             <x-input :readonly="!isEdit" :show-clear="false" text-align="right" title="用户名" v-model="baseInfor.username"></x-input>
-             <x-input :readonly="!isEdit" :show-clear="false" text-align="right" title="我的地址" v-model="baseInfor.address"></x-input>
-             <x-input disabled text-align="right" title="手机号码" v-model="baseInfor.phone"></x-input>
-             <x-input disabled text-align="right" title="余额" v-model="baseInfor.count"></x-input>
+             <x-input :readonly="!isEdit" :show-clear="false" text-align="right" title="用户名" v-model="customer.username"></x-input>
+             <x-input :readonly="!isEdit" :show-clear="false" text-align="right" title="我的地址" v-model="customer.address"></x-input>
+             <x-input disabled text-align="right" title="手机号码" v-model="customer.phone"></x-input>
+             <x-input disabled text-align="right" title="余额" v-model="customer.count"></x-input>
           </group>
-          <x-button type="primary" v-if="isEdit" @click.native="updateBaseInfor">保存</x-button>
+          <x-button type="primary" v-if="isEdit" @click.native="updateInfor">保存</x-button>
           <x-button type="warn" v-else @click.native="isEdit = true">修改</x-button>
       </section>
   </div>
@@ -33,15 +33,15 @@ export default {
   },
   computed: {
     // 用户基本信息
-    baseInfor() {
-        return this.$store.getters.getCustomerBaseInfor;
+    customer() {
+        return this.$store.getters.getCustomerInfor;
     },
   },
   methods: {
     // 修改用户基本信息
-    updateBaseInfor() {
+    updateInfor() {
         this.isEdit = false;
-        customerCache.updateBaseInfor(this.baseInfor)
+        customerCache.updateInfor(this.customer)
         .then(res=>{
           this.$vux.toast.text(res.msg);
         }).catch(err=>{

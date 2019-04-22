@@ -12,7 +12,7 @@ const router = new Router({
 
 // 请求前
 router.beforeEach((res,from,next)=>{
-  let isLogin = store.state.identity;
+  let isLogin = store.state.status;
   // let isLogin = 1;
   if(!isLogin && res.path !== '/login'){
     return next({path:'/login'})
