@@ -1,7 +1,6 @@
 <template>
   <div class="pages-login">
     <section class="login-bg">
-
     </section>
     <section class="login-log">
         <img src="../../assets/imgs/log.png" alt="">
@@ -108,6 +107,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    @import '@/assets/style/common.scss';
     .login-bg {
         position: fixed;
         width: 100%;
@@ -120,10 +120,10 @@ export default {
         text-align: center;
     }
     .login-content {
-        padding-left: 10%;
-        padding-right: 10%;
+        padding-left: 10vw;
+        padding-right: 10vw;
         .brief {
-            margin-top: 10px;
+            margin-top: 2vw;
             text-align: right;
             font-size: 14px;
             color: #03A9F4;

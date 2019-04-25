@@ -1,6 +1,6 @@
 <template>
   <div class="tab-swiper">
-      <tabbar @on-index-change="onSwiper">
+      <tabbar @on-index-change="onSwiper" style="position: fixed">
         <tabbar-item v-for="(item, index) in tabs" :key="index" :selected="index === 0">
           <i slot="icon" class="iconfont" :class="item.icon"></i>
           <span slot="label">{{item.label}}</span>
@@ -37,6 +37,9 @@ export default {
 </script>
 
 <style lang="scss">
+  .tab-swiper {
+    margin-top: 63px;
+  }
   .weui-tabbar {
     a {
       text-decoration: none;

@@ -56,14 +56,15 @@ export default {
 </script>
 
 <style lang="scss">
+  @import '@/assets/style/common.scss';
   .admin-avatar {
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 5vw;
+    padding-bottom: 5vw;
     text-align: center;
     color: #fff;
     background: linear-gradient(90deg, #03A9F4,#1D62F0);
     img {
-      width: 100px;
+      width: rem(100px);
       border-radius: 50%;
     }
   }
@@ -73,7 +74,7 @@ export default {
     }
     .weui-btn {
       width: 80%;
-      margin-top: 40px;
+      margin-top: 10vw;
     }
   }
 </style>

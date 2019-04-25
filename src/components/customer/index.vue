@@ -20,7 +20,7 @@ export default {
     return {
       tabs: [
         {
-          label: '外卖',
+          label: '点餐',
           icon: 'icon-shop',
           path: 'shop'
         }, {
@@ -61,9 +61,11 @@ export default {
 </script>
 
 <style lang="scss">
+  @import '@/assets/style/common.scss';
   .tab-title {
-    height: 20px;
+    height: rem(20px);
     padding: 20px;
+    font-size: rem(16px);
     color: #fff;
     background: linear-gradient(90deg, #03A9F4,#1D62F0);
   }

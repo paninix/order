@@ -1,0 +1,3 @@
+$rem-base: 37px;
+@function rem($pxval) { @return ($pxval / $rem-base) * 1rem; }
+.pages-login, .pages-guide, .customer-index { font-size: 0}
