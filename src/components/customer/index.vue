@@ -22,11 +22,11 @@ export default {
         {
           label: '点餐',
           icon: 'icon-shop',
-          path: 'shop'
+          path: 'order'
         }, {
           label: '订单',
           icon: 'icon-order',
-          path: 'order'
+          path: 'orders'
         }, {
           label: '我的',
           icon: 'icon-admin',

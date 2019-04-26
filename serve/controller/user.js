@@ -1,6 +1,5 @@
 let mongoose = require('mongoose');
 let User = mongoose.model('User');
-let Customer = mongoose.model('Customer');
 
 module.exports =  {
     async login(ctx) {
