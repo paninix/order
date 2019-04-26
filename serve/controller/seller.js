@@ -29,5 +29,22 @@ module.exports = {
         } else {
             ctx.body = {'status':100, 'data': {msg:'用户信息修改失败'}};
         }
+    },
+    // 客户端获取商家列表
+    async getList(ctx) {
+        let condition = ctx.request.body;
+        let search = {};
+        if(condition.type) {
+            search.type = condition.type;
+        }
+        if(condition.canteen) {
+            search.canteen = condition.canteen;
+        }
+        let res = await Seller.find(search);
+        if(res) {
+            ctx.body = { 'status':200, 'data': res };
+        } else {
+            ctx.body = {'status':100, 'data': {msg:'获取商家列表信息失败'}};
+        }
     }
 }

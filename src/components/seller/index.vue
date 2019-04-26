@@ -48,9 +48,7 @@ export default {
     getsellerInfor() {
       sellerCache.getInfor(this.phone)
       .then(res=>{
-        console.log(this.$store);
         this.$store.dispatch('sellerInitInfor', res);
-        console.log(res);
       }).catch(err=>{
         this.$vux.toast.text(err.msg);
       });

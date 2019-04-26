@@ -27,19 +27,19 @@
           <ul>
             <li v-for="(item, index) in shops" :key="index">
               <div class="panel-img">
-                <img :src="item.img" alt="">
+                <img :src="item.avatar" alt="">
               </div>
               <div class="panel-content">
-                <h3 class="title">{{item.name}}</h3>
+                <h3 class="title">{{item.shopname}}</h3>
                 <p class="rate">
-                  <rater v-model="rate" disabled :font-size="15"></rater>
-                  <span>{{item.rate}}</span>
+                  <rater v-model="item.rate" disabled :font-size="15"></rater>
+                  <span>{{item.rate}}分</span>
                 </p>
-                <p class="volume">月售{{item.volume}}单</p>
+                <p class="sale">月售{{item.sale}}单</p>
               </div>
               <div class="panel-tag">
-                <p :class="'s-tag s-type'+item.type.value">{{item.type.name}}</p>
-                <p class="s-tag s-canteen">{{item.canteen.name}}</p>
+                <p :class="'s-tag s-type'+item.type">{{item.type | typeFilter}}</p>
+                <p class="s-tag s-canteen">{{item.canteen | canteenFilter}}</p>
               </div>
             </li>
           </ul>
@@ -50,6 +50,7 @@
 
 <script>
 import { Flexbox, FlexboxItem, Divider, Rater } from 'vux'
+import sellerCache from '@/axios/seller/cache';
 export default {
   name: 'customer-order',
   components: {
@@ -124,81 +125,35 @@ export default {
         canteen: 0, //选择的食堂
         type: 0 // 选择的类型
       },
-      shops: [
-        {
-          img: 'https://fuss10.elemecdn.com/f/8d/f29dbf20be425fc12426c0b1f90b7jpeg.jpeg?imageMogr/format/webp/thumbnail/!130x130r/gravity/Center/crop/130x130/',
-          name: 'CoCo都可',
-          rate: 4.7,
-          volume: 447,
-          type: {
-            name: '水果',
-            value: 1
-          },
-          canteen: {
-            name: '一食堂',
-            value: 1
-          }
-        }, {
-          name: '味乐基汉堡',
-          img: 'https://fuss10.elemecdn.com/d/24/0f5debb9cf74dd8b46b8fee1e9019jpeg.jpeg?imageMogr/format/webp/thumbnail/!130x130r/gravity/Center/crop/130x130/',
-          rate: 4.7,
-          volume: 845,
-          type: {
-            name: '汉堡披萨',
-            value: 2
-          },
-          canteen: {
-            name: '一食堂',
-            value: 1
-          }
-        }, {
-          name: '小碗菜',
-          img: 'https://fuss10.elemecdn.com/0/35/a03b2d4037a8b8b269aa2e424ff98jpeg.jpeg?imageMogr/format/webp/thumbnail/!130x130r/gravity/Center/crop/130x130/',
-          rate: 3.8,
-          volume: 1007,
-          type: {
-            name: '小碗菜',
-            value: 5
-          },
-          canteen: {
-            name: '二食堂',
-            value: 2
-          }
-        }, {
-          name: '味老大北京烤鸭(红谷滩店)',
-          img: 'https://fuss10.elemecdn.com/6/a7/fd4a99301f34fcd63f75d89f1b53bjpeg.jpeg?imageMogr/format/webp/thumbnail/!130x130r/gravity/Center/crop/130x130/',
-          rate: 4.5,
-          volume: 269,
-          type: {
-            name: '炸鸡炸串',
-            value: 3
-          },
-          canteen: {
-            name: '二食堂',
-            value: 2
-          }
-        }, {
-          name: '小湘厨',
-          img: 'https://fuss10.elemecdn.com/3/3a/53f6184aad20d23a33da650a735adpng.png?imageMogr/format/webp/thumbnail/!130x130r/gravity/Center/crop/130x130/',
-          rate: 4.6,
-          volume: 1107,
-          type: {
-            name: '素食简餐',
-            value: 4
-          },
-          canteen: {
-            name: '三食堂',
-            value: 3
-          }
-        }
-      ],
-      rate: 4.7
+      shops: []
+    }
+  },
+  filters: {
+    typeFilter(value) {
+      let types = ['水果', '汉堡披萨', '炸鸡炸串', '包子粥铺', '麻辣烫', '米粉面馆', '地方小吃', '速食简餐', '盖浇饭', '小碗菜'];
+      return types[value-1];
+    },
+    canteenFilter(value) {
+      let canteens = ['一食堂', '二食堂', '三食堂'];
+      return canteens[value-1];
     }
   },
   methods: {
     doSelect(name, value) {
       this.selected[name] = value+1;
+      this.getSellersList();
+    },
+    getSellersList() {
+      sellerCache.getList(this.selected)
+      .then(res=>{
+        this.shops = res;
+      }).catch(err=>{
+         this.$vux.toast.text(err.msg);
+      })
     }    
+  },
+  created() {
+    this.getSellersList();
   }
 }
 </script>
@@ -263,7 +218,7 @@ export default {
             margin-bottom: 2vw;
             font-size: rem(12px);
           }
-          .volume {
+          .sale {
             color: #666;
             font-size: rem(12px);
           }

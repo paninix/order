@@ -10,5 +10,9 @@ export default {
 	'seller-addInfor': {
 		url: 'seller/addInfor',
 		method: 'post'
+	},
+	'seller-getList': {
+		url: 'seller/getList',
+		method: 'post'
 	}
 }

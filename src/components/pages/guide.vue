@@ -56,7 +56,9 @@ export default {
                 address: '',    // 地址
                 type: 0,    // 商家类别
                 canteen: 0, // 所在食堂
-                avatar: 'https://fuss10.elemecdn.com/1/2d/5653e567a1eb74d5af0199a2b8582png.png?imageMogr/format/webp/thumbnail/!130x130r/gravity/Center/crop/130x130/'    
+                sale: 0,    // 销量
+                rate: 5,    // 评分
+                avatar: 'https://fuss10.elemecdn.com/a/7c/a7e9e5aa15b1b8fc6f1bece8ee385jpeg.jpeg?imageMogr/format/webp/thumbnail/!130x130r/gravity/Center/crop/130x130/'    
 
             },
             // 骑手端用户 

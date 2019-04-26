@@ -10,5 +10,8 @@ export default  {
 	},
 	addInfor(options) {
 		return sendRequest(CACHE_KEY, 'seller-addInfor',options)
+	},
+	getList(options) {
+		return sendRequest(CACHE_KEY, 'seller-getList',options)
 	}
 }
