@@ -21,7 +21,7 @@ export default {
       tabs: [
         {
           label: '点餐',
-          icon: 'icon-shop',
+          icon: 'icon-home',
           path: 'order'
         }, {
           label: '订单',

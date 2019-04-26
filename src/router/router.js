@@ -2,6 +2,9 @@ import Login from '@/components/pages/login';   // 登录注册页面
 import Guide from '@/components/pages/guide';   // 引导页面
 
 import SellerIndex from '@/components/seller/index';    // 商家端-首页
+import SellerOrder from '@/components/seller/order'  // 商家端-接单页面
+import SellerOrders from '@/components/seller/orders'  // 商家端-订单页面
+import SellerManage from '@/components/seller/manage'  // 商家端- 管理页面
 
 import TakerIndex from '@/components/taker/index';  // 骑手端-首页
 
@@ -22,7 +25,22 @@ export default [
         component: Guide
     }, {
         path: '/seller',
-        component: SellerIndex
+        component: SellerIndex,
+        children: [
+            {
+                path: '/',
+                redirect: 'order'
+            }, {
+                path: 'order',
+                component: SellerOrder
+            }, {
+                path: 'orders',
+                component: SellerOrders
+            }, {
+                path: 'manage',
+                component: SellerManage
+            }
+        ]
     }, {
         path: '/taker',
         component: TakerIndex

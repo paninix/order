@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex);
 import { state, getters, actions, mutations} from './common.js';
 import customer from './modules/customer.js';
+import seller from './modules/seller.js';
 
 export default new Vuex.Store({
     state,
@@ -11,6 +12,7 @@ export default new Vuex.Store({
     actions,
     mutations,
     modules:{  //这里存放的是子模块
-        customer
+        customer,
+        seller
     }
 });

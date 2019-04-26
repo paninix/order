@@ -11,7 +11,7 @@ const CUSTOMER = {
 
 // 商家端模块
 const SELLER = {
-
+    SELLERINITINFOR: 'SELLERINITINFOR'  // 初始化商家端用户基本信息
 }
 
 // 骑手端模块
