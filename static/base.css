@@ -23,7 +23,10 @@
 /*样式重置*/
 body, p, ul, h1, h2, h3 { margin: 0;}
 ul {padding: 0;}
-ul {text-decoration: none;}
+ul, a {text-decoration: none;}
+li { list-style: none;}
+a{ color:#333; } 
+img {width: 100%;}
 /*共用样式*/
 .s-tag {padding: 1vw;text-align: center;}
 .s-canteen {color: #607D8B;}

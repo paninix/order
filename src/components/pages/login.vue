@@ -118,6 +118,9 @@ export default {
     }
     .login-log {
         text-align: center;
+        img {
+            width: auto;
+        }
     }
     .login-content {
         padding-left: 10vw;

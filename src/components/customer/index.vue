@@ -1,10 +1,13 @@
 <template>
   <div class="customer-index">
     <section class="tab-title">
-      <span>{{tabTitle}}</span>
+      <div>
+        <i class="iconfont icon-back" v-show="isSub" @click="goBack"></i>
+        <span>{{tabTitle}}</span>
+      </div>
     </section>
     <router-view/>
-    <tab-swiper :tabs="tabs" @changeTab="changeTab"></tab-swiper>
+    <tab-swiper :tabs="tabs"></tab-swiper>
   </div>
 </template>
 
@@ -18,6 +21,7 @@ export default {
   },
   data() {
     return {
+      isSub: false,
       tabs: [
         {
           label: '点餐',
@@ -32,19 +36,23 @@ export default {
           icon: 'icon-admin',
           path: 'admin'
         }
-      ],
-      tabTitle: '外卖'
+      ]
     }
   },
   computed: {
     phone() {
       return this.$store.getters.getUserPhone;
+    },
+    tabTitle() {
+      return this.$store.getters.getTabTitle;
+    }
+  },
+  watch: {
+    '$route'(to, from) {
+      this.isSub = this.$router.currentRoute.meta.isSub || false;
     }
   },
   methods: {
-    changeTab(label) {
-      this.tabTitle = label;
-    },
     getCustomerInfor() {
       customerCache.getInfor(this.phone)
       .then(res=>{
@@ -52,6 +60,9 @@ export default {
       }).catch(err=>{
         this.$vux.toast.text(err.msg);
       });
+    },
+    goBack() {
+      this.$router.go(-1)
     }
   },
   created() {
@@ -64,9 +75,12 @@ export default {
   @import '@/assets/style/common.scss';
   .tab-title {
     height: rem(20px);
-    padding: 20px;
+    padding: 4vw 2vw;
     font-size: rem(16px);
     color: #fff;
     background: linear-gradient(90deg, #03A9F4,#1D62F0);
+    .iconfont {
+      font-size: rem(16px);
+    }
   }
 </style>

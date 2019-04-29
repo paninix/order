@@ -11,7 +11,6 @@
         </flexbox>
     </section>
     <section class="order-canteens">
-        <divider>食堂</divider>
         <flexbox>
           <flexbox-item v-for="(item, index) in selects.canteens" :key="index">
             <div class="canteen" @click="doSelect('canteen', index)">
@@ -162,9 +161,6 @@ export default {
   @import '@/assets/style/common.scss';
   .customer-order {
     .canteen, .type {
-      img {
-        width: 100%;
-      }
       p {
         text-align: center;
         color: #666;
@@ -180,6 +176,7 @@ export default {
       }
     }
     .vux-divider {
+      font-weight: 700;
       font-size: rem(14px);
     }
   }
@@ -197,12 +194,12 @@ export default {
   }
   .order-list {
     margin-top: 5vw;
-  }
-  .panel {
+    .panel {
       li {
         display: flex;
         padding: 2vw 4vw;
         .panel-img {
+          width: 25%;
           margin-right: 4vw;
           img {
             height: rem(80px);
@@ -231,5 +228,6 @@ export default {
         }
       }
     }
+  }
   
 </style>

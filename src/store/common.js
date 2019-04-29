@@ -3,11 +3,11 @@
  */
 
 import {COMMON} from './types' //从types.js中引用常量
-// import {COMMON} from './type/index' //从types.js中引用常量
 
  const state = {
-    status: 0, // 登录账号类型：0未登录 1为用户 2为商家 3为骑手
-    phone: ''   // 手机号码（用户标识）
+    status: 0,      // 登录账号类型：0未登录 1为用户 2为商家 3为骑手
+    phone: '',      // 手机号码（用户标识）
+    tabTitle: '',   // 页面标题
  }
 
  const getters={
@@ -18,6 +18,10 @@ import {COMMON} from './types' //从types.js中引用常量
     // 获取用户手机号
     getUserPhone(state) {
         return state.phone;
+    },
+    // 获取页面标题
+    getTabTitle(state) {
+        return state.tabTitle;
     }
 }
 
@@ -26,6 +30,10 @@ const actions = {
     userGlobalInit({commit}, globalDatas) {
         commit(COMMON.USERSTATUS, globalDatas.status);
         commit(COMMON.USERPHONE, globalDatas.phone);
+    },
+    // 设置页面标题
+    setTabTitle({commit}, tabTitle) {
+        commit(COMMON.SETTABTITLE, tabTitle);
     }
 }
 
@@ -35,6 +43,9 @@ const mutations={
     },
     [COMMON.USERPHONE](state, phone){
         state.phone = phone;
+    },
+    [COMMON.SETTABTITLE](state, tabTitle) {
+        state.tabTitle = tabTitle;
     }
 }
 

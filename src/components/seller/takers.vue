@@ -1,17 +1,14 @@
 <template>
-  <div id="app">
-    <router-view/>
+  <div class="seller-takers">
+    配送页面
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'seller-takers'
 }
 </script>
 
 <style lang="scss">
-  #app { 
-    font-size: 0
-  }
 </style>
