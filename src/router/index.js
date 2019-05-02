@@ -20,6 +20,9 @@ router.beforeEach((res,from,next)=>{
       return next({path:'/login'});
     }
   } else {  //已经登录
+    if(res.path === '/store') {
+      return next();
+    }
     let routes = ['/', 'customer', 'seller', 'taker'];
     // 访问的不是对应用户类型的页面
     if(res.path.indexOf(routes[status]) === -1) {

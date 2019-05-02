@@ -19,6 +19,11 @@ import CustomerOrder from '@/components/customer/order'     // 客户端-点餐�
 import CustomerOrders from '@/components/customer/orders'   // 客户端-订单页面
 import CustomerAdmin from '@/components/customer/admin'     // 客户端- 用户页面
 
+import StoreIndex from '@/components/store/index'           // 店铺-首页
+import StoreOrder from '@/components/store/order'           // 店铺-点餐页面
+import StoreRate from '@/components/store/rate'             // 店铺-评价页面
+import StoreInfor from '@/components/store/infor'           // 店铺-详情页面
+
 export default [
     { path: '/', redirect: '/login' },
     { path: '/login', name: 'pages-login', component: Login },
@@ -50,6 +55,16 @@ export default [
             { path: 'order', name: 'customer-order', component: CustomerOrder, meta: {tabTitle:'点餐'} }, 
             { path: 'orders', name: 'customer-orders', component: CustomerOrders, meta: {tabTitle:'订单'} }, 
             { path: 'admin', name: 'customer-admin', component: CustomerAdmin, meta: {tabTitle:'我的'} }
+        ]
+    }, {
+        path: '/store',
+        name: 'store-index',
+        component: StoreIndex,
+        children: [
+            { path: '/', redirect: 'order' }, 
+            { path: 'order', name: 'store-order', component: StoreOrder }, 
+            { path: 'rate', name: 'store-rate', component: StoreRate }, 
+            { path: 'infor', name: 'store-infor', component: StoreInfor }
         ]
     }
 ];

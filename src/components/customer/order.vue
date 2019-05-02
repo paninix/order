@@ -24,7 +24,7 @@
       <divider>推荐商家</divider>
       <div class="panel">
           <ul>
-            <li v-for="(item, index) in shops" :key="index">
+            <li v-for="(item, index) in shopList" :key="index" @click="intoShop(item)">
               <div class="panel-img">
                 <img :src="item.avatar" alt="">
               </div>
@@ -124,7 +124,7 @@ export default {
         canteen: 0, //选择的食堂
         type: 0 // 选择的类型
       },
-      shops: []
+      shopList: []
     }
   },
   filters: {
@@ -145,11 +145,15 @@ export default {
     getSellersList() {
       sellerCache.getList(this.selected)
       .then(res=>{
-        this.shops = res;
+        this.shopList = res;
       }).catch(err=>{
          this.$vux.toast.text(err.msg);
       })
-    }    
+    },
+    intoShop(item) {
+      this.$store.dispatch('setStoreInfor', item)
+      this.$router.push({path:'store', name:'store-index'});
+    }  
   },
   created() {
     this.getSellersList();

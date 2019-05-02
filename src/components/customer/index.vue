@@ -56,7 +56,7 @@ export default {
     getCustomerInfor() {
       customerCache.getInfor(this.phone)
       .then(res=>{
-        this.$store.dispatch('customerInitInfor', res);
+        this.$store.dispatch('setCustomerInfor', res);
       }).catch(err=>{
         this.$vux.toast.text(err.msg);
       });

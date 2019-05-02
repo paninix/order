@@ -6,7 +6,8 @@ const COMMON = {
 
 //客户端模块
 const CUSTOMER = {
-    CUSTOMERINITINFOR: 'CUSTOMERINITINFOR' // 初始化客户端用户基本信息
+    SETCUSTOMERINFOR: 'SETCUSTOMERINFOR',   // 设置用户信息
+    SELSTOREINFOR: 'SELSTOREINFOR'          // 设置店铺信息
 }
 
 // 商家端模块

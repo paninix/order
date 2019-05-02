@@ -7,7 +7,7 @@
     </div>
     <div class="goods-type">
       <ul>
-        <li v-for="(item,index) in types" :key="index" @click="changeType(index)">{{item.name}}</li>
+        <li :class="typeActive === index && 'active'" v-for="(item,index) in types" :key="index" @click="changeType(index)">{{item.name}}</li>
       </ul>
     </div>
     <div class="goods-good">
@@ -41,6 +41,7 @@ export default {
   data() {
     return {
       typeGoods: [],
+      typeActive: 0
     }
   },
   computed: {
@@ -53,6 +54,7 @@ export default {
   },
   methods: {
     changeType(index) {
+      this.typeActive = index;
       this.typeGoods =  this.goods[index];
     },
     addGood() {
@@ -108,6 +110,9 @@ export default {
       text-align: center;
       li {
         padding: 5vw;
+        &.active {
+          background-color: #fff;
+        }
       }
     }
   }
