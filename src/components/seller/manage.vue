@@ -73,7 +73,6 @@ export default {
   },
   methods: {
     intoTab(tab) {
-      this.$store.dispatch('setTabTitle', tab.label);
       this.$router.push(tab.path);
     }
   },

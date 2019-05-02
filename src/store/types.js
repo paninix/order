@@ -2,7 +2,6 @@
 const COMMON = {
     USERSTATUS: 'USERSTATUS',               //用户登录状态
     USERPHONE: 'USERPHONE',                 // 用户手机号
-    SETTABTITLE: 'SETTABTITLE'              // 设置页面标题
 }
 
 //客户端模块

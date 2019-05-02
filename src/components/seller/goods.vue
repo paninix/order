@@ -71,6 +71,7 @@ export default {
       };
       sellerCache.updateGoodsList(goodsList)
       .then(res=>{
+        this.$vux.toast.text(res.msg);
       }).catch(err=>{
         this.$vux.toast.text(err.msg);
       });

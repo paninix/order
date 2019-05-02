@@ -22,6 +22,7 @@ export default {
   data() {
     return {
       isSub: false,
+      tabTitle: '接单',
       tabs: [
         {
           label: '接单',
@@ -42,14 +43,13 @@ export default {
   computed: {
     phone() {
       return this.$store.getters.getUserPhone;
-    },
-    tabTitle() {
-      return this.$store.getters.getTabTitle;
     }
   },
   watch: {
     '$route'(to, from) {
-      this.isSub = this.$router.currentRoute.meta.isSub || false;
+      let meta = this.$router.currentRoute.meta;
+      this.isSub = meta.isSub || false;
+      this.tabTitle = meta.tabTitle;
     }
   },
   methods: {

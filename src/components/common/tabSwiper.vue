@@ -26,7 +26,6 @@ export default {
   methods: {
     onSwiper(index) {
       let tab = this.tabs[index];
-      this.$store.dispatch('setTabTitle', tab.label);
       this.$router.push(tab.path);
     }
   },
