@@ -1,17 +1,18 @@
 <template>
   <div class="seller-goods">
     <div class="good-manage">
-      <div class="type" @click="editType">管理分类</div>
-      <div class="good" @click="addGood">新建商品</div>
+      <div @click="editType">管理分类</div>
+      <div @click="saveChange">保存修改</div>
+      <div @click="addGood">新建商品</div>
     </div>
     <div class="goods-type">
       <ul>
-        <li v-for="(item,index) in good" :key="index" @click="changeType(index)">{{item.value}}</li>
+        <li v-for="(item,index) in types" :key="index" @click="changeType(index)">{{item.name}}</li>
       </ul>
     </div>
     <div class="goods-good">
       <ul>
-        <li v-for="(item,index) in goods" :key="index" class="good">
+        <li v-for="(item,index) in typeGoods" :key="index" class="good">
           <div class="good-img">
             <img :src="item.avatar" alt="">
           </div>
@@ -20,63 +21,63 @@
             <p>￥{{item.price}}</p>
           </div>
           <div class="good-handle">
-            <x-button mini plain type="primary">编辑</x-button>
+            <x-button mini plain type="primary" @click.native="editGood(item)">编辑</x-button>
             <x-button mini plain type="warn">下架</x-button>
           </div>
         </li>
       </ul>
     </div>
-    <confirm v-model="isShowConfirm"
-      title="测试"
-      @on-cancel="onCancel"
-      @on-confirm="onConfirm">
-        <div slot="content">
-          <h1>测试</h1>
-          <span>222222</span>
-          <p>4444444444</p>
-        </div>
-    </confirm>
   </div>
 </template>
 
 <script>
-import {XButton, Confirm} from 'vux';
+import {XButton} from 'vux';
+import sellerCache from '@/axios/seller/cache';
 export default {
   name: 'seller-goods',
   components: {
-    XButton,
-    Confirm
+    XButton
   },
   data() {
     return {
-      goods: [],
-      isShowConfirm: false
+      typeGoods: [],
     }
   },
   computed: {
-    good() {
-      return this.$store.getters.getSellerInfor.good;
+    types() {
+      return this.$store.getters.getSellerInfor.goodtypes;
+    },
+    goods() {
+      return this.$store.getters.getSellerInfor.goods;
     }
   },
   methods: {
     changeType(index) {
-      this.goods = this.good[index].goods;
+      this.typeGoods =  this.goods[index];
     },
     addGood() {
-      this.isShowConfirm = true;
+      this.$router.push({path:'edit', name:'seller-edit', params:{type:'addGood'}});
+    },
+    editGood(good) {
+      this.$router.push({path:'edit', name:'seller-edit', params:{type:'editGood', good}});
     },
     editType() {
-
+      this.$router.push({path:'edit', name:'seller-edit', params:{type:'editType'}});
     },
-    onCancel() {
-
-    },
-    onConfirm() {
-      
+    saveChange() {
+      let goodsList = {
+        goodtypes: this.types,
+        goods: this.goods
+      };
+      sellerCache.updateGoodsList(goodsList)
+      .then(res=>{
+      }).catch(err=>{
+        this.$vux.toast.text(err.msg);
+      });
     }
   },
   created() {
-    
+    this.changeType(0);
   }
 }
 </script>
@@ -88,15 +89,12 @@ export default {
   }
   .good-manage {
     display: flex;
-    padding: 2vw;
+    padding: 3vw;
+    text-align: center;
     color: #fff;
     background-color: #333;
-    .type {
-      width: 30%;
-    }
-    .good {
-      flex-grow: 1;
-      text-align: right;
+    div {
+      flex: 1;
     }
   } 
   .goods-type {

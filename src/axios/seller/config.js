@@ -14,5 +14,9 @@ export default {
 	'seller-getList': {
 		url: 'seller/getList',
 		method: 'post'
+	},
+	'seller-updateGoodsList': {
+		url: 'seller/updateGoodsList',
+		method: 'post'
 	}
 }

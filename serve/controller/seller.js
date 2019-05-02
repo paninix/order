@@ -1,10 +1,12 @@
 let mongoose = require('mongoose');
 let Seller = mongoose.model('Seller');
 
+var phone = '';   //商家用户标识
+
 module.exports = {
     // 获取用户基本信息
     async getInfor(ctx) {
-        let phone = ctx.query.phone;
+        phone = ctx.query.phone;
         let res = await Seller.findOne({phone}, {_id:0});
         if(res) {
             ctx.body = { 'status':200, 'data': res };
@@ -44,7 +46,17 @@ module.exports = {
         if(res) {
             ctx.body = { 'status':200, 'data': res };
         } else {
-            ctx.body = {'status':100, 'data': {msg:'获取商家列表信息失败'}};
+            ctx.body = {'status':100, 'data': {msg: '获取商家列表信息失败'}};
+        }
+    },
+    // 商家端更新商品列表
+    async updateGoodsList(ctx) {
+        let goodsList = ctx.request.body;
+        let res = await Seller.updateOne({phone},{$set:goodsList});
+        if(res) {
+            ctx.body = { 'status':200, 'data': {msg: '商品信息更新成功'} };
+        } else {
+            ctx.body = { 'status':100, 'data': {msg: '商品信息更新失败'} };
         }
     }
 }

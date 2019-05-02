@@ -12,11 +12,19 @@ const router = new Router({
 
 // 请求前
 router.beforeEach((res,from,next)=>{
-  let isLogin = store.state.status;
-  // let isLogin = 1;
-  console.log(isLogin);
-  if(!isLogin && res.path !== '/login'){
-    return next({path:'/login'})
+  let status = store.state.status;
+  // 未登录
+  if(!status) {
+    // 未登录且访问的不是login页面
+    if(res.path !== '/login') {
+      return next({path:'/login'});
+    }
+  } else {  //已经登录
+    let routes = ['/', 'customer', 'seller', 'taker'];
+    // 访问的不是对应用户类型的页面
+    if(res.path.indexOf(routes[status]) === -1) {
+      return next({path:''})
+    }
   }
   next();
 })

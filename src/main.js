@@ -6,9 +6,8 @@ import router from './router';
 
 Vue.config.productionTip = false;
 
-import { AlertPlugin, ToastPlugin } from 'vux'
-Vue.use(AlertPlugin)
-Vue.use(ToastPlugin)
+import { AlertPlugin, ToastPlugin, ConfirmPlugin } from 'vux'
+Vue.use(AlertPlugin).use(ToastPlugin).use(ConfirmPlugin);
 
 import axios from './axios';
 import store from './store';

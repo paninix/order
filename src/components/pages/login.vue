@@ -8,7 +8,7 @@
     <section class="login-content">
         <group>
             <form>
-                <x-input type="tel" v-model="user.phone" placeholder="请输入手机号"></x-input>
+                <x-input v-model="user.phone" placeholder="请输入手机号"></x-input>
                 <x-input type="password" v-model="user.password" placeholder="请输入密码"></x-input>
                 <x-input v-show="isRegister" v-model="sheet.selected" placeholder="请选择账号类型" :show-clear='false' @on-focus="sheet.isShow=true"></x-input>
                 <x-button :gradients="['#1D62F0', '#19D5FD']" :disabled="inputFormat" @click.native="login">{{isRegister?'注册':'登录'}}</x-button>           

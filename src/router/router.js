@@ -9,6 +9,8 @@ import SellerGoods from '@/components/seller/goods'     // 商家端-管理页�
 import SellerRates from '@/components/seller/rates'     // 商家端-管理页面-评价页面
 import SellerCounts from '@/components/seller/counts'   // 商家端-管理页面-财务页面
 import SellerTakers from '@/components/seller/takers'   // 商家端-管理页面-配送页面
+import SellerEdit from '@/components/seller/edit'       // 商家端-管理页面-编辑页面
+
 
 import TakerIndex from '@/components/taker/index'           // 骑手端-首页
 
@@ -19,32 +21,35 @@ import CustomerAdmin from '@/components/customer/admin'     // 客户端- 用户
 
 export default [
     { path: '/', redirect: '/login' },
-    { path: '/login', component: Login },
-    { path: '/guide', component: Guide }, 
+    { path: '/login', name: 'pages-login', component: Login },
+    { path: '/guide', name: 'pages-guide', component: Guide }, 
     {
         path: '/seller',
+        name: 'seller-index',
         component: SellerIndex,
         children: [
             { path: '/', redirect: 'order' }, 
-            { path: 'order', component: SellerOrder }, 
-            { path: 'orders', component: SellerOrders }, 
-            { path: 'manage', component: SellerManage }, 
-            { path: 'goods', component: SellerGoods, meta: {isSub:true} },
-            { path: 'rates', component: SellerRates, meta: {isSub:true} },
-            { path: 'counts', component: SellerCounts, meta: {isSub:true} },
-            { path: 'takers', component: SellerTakers, meta: {isSub:true} },
+            { path: 'order', name:'seller-order', component: SellerOrder }, 
+            { path: 'orders', name:'seller-orders', component: SellerOrders }, 
+            { path: 'manage', name:'seller-manage', component: SellerManage }, 
+            { path: 'goods', name:'seller-goods', component: SellerGoods, meta: {isSub:true} },
+            { path: 'rates', name:'seller-rates', component: SellerRates, meta: {isSub:true} },
+            { path: 'counts', name:'seller-counts', component: SellerCounts, meta: {isSub:true} },
+            { path: 'takers', name:'seller-takers', component: SellerTakers, meta: {isSub:true} },
+            { path: 'edit', name:'seller-edit', component: SellerEdit, meta: {isSub:true} },
         ]
     }, {
         path: '/taker',
         component: TakerIndex
     }, {
         path: '/customer',
+        name: 'customer-index',
         component: CustomerIndex,
         children: [
             { path: '/', redirect: 'order' }, 
-            { path: 'order', component: CustomerOrder }, 
-            { path: 'orders', component: CustomerOrders }, 
-            { path: 'admin', component: CustomerAdmin }
+            { path: 'order', name: 'customer-order', component: CustomerOrder }, 
+            { path: 'orders', name: 'customer-orders', component: CustomerOrders }, 
+            { path: 'admin', name: 'customer-admin', component: CustomerAdmin }
         ]
     }
 ];

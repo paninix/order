@@ -8,7 +8,9 @@ let sellerSchema = new mongoose.Schema({
     canteen: Number,    // 食堂
     type: Number,       // 类型
     sale: Number,       // 销量
-    rate: String        // 评分
+    rate: String,       // 评分
+    goods: Array,       // 商品
+    goodtypes: Array    // 商品类型
 });
 
 mongoose.model('Seller', sellerSchema);
