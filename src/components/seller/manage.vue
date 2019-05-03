@@ -25,7 +25,7 @@
           <i class="iconfont icon-more"></i>
         </p>
       </div>
-      <ul class="record">
+      <ol class="record">
         <li>
           <p class="name">今日营业额</p>
           <p class="count">5280</p>
@@ -34,7 +34,7 @@
           <p class="name">今日订单</p>
           <p class="count">132</p>
         </li>
-      </ul>
+      </ol>
     </section>
   </div>
 </template>
@@ -145,12 +145,10 @@ export default {
       }
     }
     .record {
-      display: flex;
       padding-top: 5vw;
       padding-bottom: 5vw;
       text-align: center;
       li {
-        flex: 1;
         &:first-child {
           border-right: rem(1px) solid #f5f5f5;
         }

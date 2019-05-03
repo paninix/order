@@ -10,26 +10,32 @@ const router = new Router({
   routes
 })
 
-// 请求前
-router.beforeEach((res,from,next)=>{
+// 跳转判断
+function judgeJump(path) {
   let status = store.state.status;
   // 未登录
   if(!status) {
     // 未登录且访问的不是login页面
-    if(res.path !== '/login') {
-      return next({path:'/login'});
+    if(path !== '/login') {
+      return {path:'login'};;
     }
   } else {  //已经登录
-    if(res.path === '/store') {
-      return next();
+    if(path.indexOf('store')) {
+      return false;
     }
     let routes = ['/', 'customer', 'seller', 'taker'];
     // 访问的不是对应用户类型的页面
-    if(res.path.indexOf(routes[status]) === -1) {
-      return next({path:''})
+    if(path.indexOf(routes[status]) === -1) {
+      return {path:''};
     }
   }
-  next();
+  return false;
+}
+
+// 请求前
+router.beforeEach((res,from,next)=>{
+  let path = judgeJump(res.path);
+  path ? next(path) : next();
 })
 // 请求后
 router.afterEach((res, from, next)=>{

@@ -11,4 +11,8 @@ export default {
 </script>
 
 <style lang="scss">
+  @import '@/assets/style/common.scss';
+  .store-order {
+    font-size: rem(14px);
+  }
 </style>

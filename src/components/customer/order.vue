@@ -152,7 +152,7 @@ export default {
     },
     intoShop(item) {
       this.$store.dispatch('setStoreInfor', item)
-      this.$router.push({path:'store', name:'store-index'});
+      this.$router.push('../store');
     }  
   },
   created() {

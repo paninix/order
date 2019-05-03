@@ -21,9 +21,10 @@
 @media screen and (min-width:901px) {html, body {font-size: 600%;}}
 
 /*样式重置*/
-body, p, ul, h1, h2, h3 { margin: 0;}
-ul {padding: 0;}
-ul, a {text-decoration: none;}
+body, p, ul, ol, h1, h2, h3 { margin: 0;}
+ul, ol {padding: 0;}
+ul, ol, a {text-decoration: none;}
+ol { display: flex; } ol>li { flex: 1} ol>li.grow {flex-grow: 1}
 li { list-style: none;}
 a{ color:#333; } 
 img {width: 100%;}

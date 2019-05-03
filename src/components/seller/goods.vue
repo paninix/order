@@ -1,9 +1,11 @@
 <template>
   <div class="seller-goods">
     <div class="good-manage">
-      <div @click="editType">管理分类</div>
-      <div @click="saveChange">保存修改</div>
-      <div @click="addGood">新建商品</div>
+      <ol>
+        <li @click="editType">管理分类</li>
+        <li @click="saveChange">保存修改</li>
+        <li @click="addGood">新建商品</li>
+      </ol>
     </div>
     <div class="goods-type">
       <ul>
@@ -91,14 +93,10 @@ export default {
     font-size: rem(14px);
   }
   .good-manage {
-    display: flex;
     padding: 3vw;
     text-align: center;
     color: #fff;
     background-color: #333;
-    div {
-      flex: 1;
-    }
   } 
   .goods-type {
     width: 30%;
