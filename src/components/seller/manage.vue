@@ -81,7 +81,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   @import '@/assets/style/common.scss';
   .manage-panel {
     display: flex;
@@ -89,9 +89,11 @@ export default {
     color: #fff;
     background: linear-gradient(90deg, #03A9F4,#1D62F0);
     .panel-img {
-      width: 15%;
-      border: rem(6px) solid #fff;
-      border-radius: rem(4px);
+      img {
+        width: 18vw;
+        border: rem(6px) solid #fff;
+        border-radius: rem(4px);
+      }
     }
     .panel-content {
       margin-left: 5vw;

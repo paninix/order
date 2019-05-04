@@ -24,10 +24,9 @@
 body, p, ul, ol, h1, h2, h3 { margin: 0;}
 ul, ol {padding: 0;}
 ul, ol, a {text-decoration: none;}
-ol { display: flex; } ol>li { flex: 1} ol>li.grow {flex-grow: 1}
 li { list-style: none;}
 a{ color:#333; } 
-img {width: 100%;}
+
 /*共用样式*/
 .s-tag {padding: 1vw;text-align: center;}
 .s-canteen {color: #607D8B;}
@@ -41,3 +40,7 @@ img {width: 100%;}
 .s-type8 {color: #fff;background: linear-gradient(90deg, #673AB7, #1D62F0);}
 .s-type9 {color: #fff;background: linear-gradient(90deg, #673AB7, #1D62F0);}
 .s-type10 {color: #fff;background: linear-gradient(90deg, #673AB7, #1D62F0);}
+
+/*自定义样式*/
+.avatar { width: 20%; margin-right: 2vw;} .avatar > img {width: 100%;}
+ol { display: flex; } ol>li { flex: 1} ol>li.grow {flex-grow: 1}

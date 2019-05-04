@@ -1,13 +1,7 @@
 <template>
   <div class="seller-goods">
-    <div class="good-manage">
-      <ol>
-        <li @click="editType">管理分类</li>
-        <li @click="saveChange">保存修改</li>
-        <li @click="addGood">新建商品</li>
-      </ol>
-    </div>
-    <div class="goods-type">
+    <div class="goods-content">
+      <div class="goods-type">
       <ul>
         <li :class="typeActive === index && 'active'" v-for="(item,index) in types" :key="index" @click="changeType(index)">{{item.name}}</li>
       </ul>
@@ -15,19 +9,27 @@
     <div class="goods-good">
       <ul>
         <li v-for="(item,index) in typeGoods" :key="index" class="good">
-          <div class="good-img">
+          <div class="avatar">
             <img :src="item.avatar" alt="">
           </div>
-          <div class="good-content">
+          <div class="content">
             <h3>{{item.name}}</h3>
             <p>￥{{item.price}}</p>
           </div>
-          <div class="good-handle">
+          <div class="handle">
             <x-button mini plain type="primary" @click.native="editGood(item)">编辑</x-button>
             <x-button mini plain type="warn">下架</x-button>
           </div>
         </li>
       </ul>
+    </div>
+    </div>
+    <div class="good-manage">
+      <ol>
+        <li @click="editType">管理分类</li>
+        <li @click="saveChange">保存修改</li>
+        <li @click="addGood">新建商品</li>
+      </ol>
     </div>
   </div>
 </template>
@@ -87,21 +89,17 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   @import '@/assets/style/common.scss';
   .seller-goods {
     font-size: rem(14px);
   }
-  .good-manage {
-    padding: 3vw;
-    text-align: center;
-    color: #fff;
-    background-color: #333;
+  .goods-content {
+    display: flex;
+    padding-bottom: 12vw;
   } 
   .goods-type {
     width: 30%;
-    height: 100%;
-    position: absolute;
     background-color: #f5f5f5;
     ul {
       width: 100%;
@@ -115,16 +113,11 @@ export default {
     }
   }
   .goods-good {
-    width: 70%;
-    margin-left: 30%;
+    width: 80%;
     .good {
        display: flex;
        padding: 2vw 2vw 0 2vw;
-       &-img {
-         width: 30%;
-         margin-right: 2vw;
-       }
-       &-content {
+       .content {
          flex-grow: 1;
          margin-top: 2vw;
          p {
@@ -132,7 +125,7 @@ export default {
            color:#ff5339;
          }
        }
-       &-handle {
+       .handle {
          .weui-btn {
            display: block;
            font-size: rem(12px);
@@ -143,5 +136,16 @@ export default {
        }
      }
    }
- 
+ .good-manage {
+    position: relative;
+    ol {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      padding: 3vw;
+      text-align: center;
+      color: #fff;
+      background-color: #1D62F0
+    }
+  }
 </style>

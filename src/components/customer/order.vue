@@ -152,7 +152,7 @@ export default {
     },
     intoShop(item) {
       this.$store.dispatch('setStoreInfor', item)
-      this.$router.push('../store');
+      this.$router.push('/store');
     }  
   },
   created() {
@@ -161,7 +161,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   @import '@/assets/style/common.scss';
   .customer-order {
     .canteen, .type {

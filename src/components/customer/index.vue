@@ -71,7 +71,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   @import '@/assets/style/common.scss';
   .tab-title {
     height: rem(20px);
