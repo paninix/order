@@ -96,7 +96,6 @@ export default {
   }
   .goods-content {
     display: flex;
-    padding-bottom: 12vw;
   } 
   .goods-type {
     width: 30%;
@@ -113,7 +112,7 @@ export default {
     }
   }
   .goods-good {
-    width: 80%;
+    width: 70%;
     .good {
        display: flex;
        padding: 2vw 2vw 0 2vw;
@@ -138,6 +137,7 @@ export default {
    }
  .good-manage {
     position: relative;
+    height: 12vw;
     ol {
       position: fixed;
       bottom: 0;

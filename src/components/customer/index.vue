@@ -7,7 +7,7 @@
       </div>
     </section>
     <router-view/>
-    <tab-swiper :tabs="tabs"></tab-swiper>
+    <tab-swiper :tabs="tabs" v-show="!isSub"></tab-swiper>
   </div>
 </template>
 
@@ -22,7 +22,7 @@ export default {
   data() {
     return {
       isSub: false,
-      tabTitle: '点餐',
+      tabTitle: '',
       tabs: [
         {
           label: '点餐',
@@ -46,10 +46,13 @@ export default {
     }
   },
   watch: {
-    '$route'(to, from) {
-      let meta = this.$router.currentRoute.meta;
-      this.isSub = meta.isSub || false;
-      this.tabTitle = meta.tabTitle;
+    '$route': {
+      handler() {
+        let meta = this.$router.currentRoute.meta;
+        this.isSub = meta.isSub || false;
+        this.tabTitle = meta.tabTitle;
+      },
+      immediate: true
     }
   },
   methods: {

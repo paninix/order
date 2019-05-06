@@ -22,7 +22,7 @@ export default {
   data() {
     return {
       isSub: false,
-      tabTitle: '接单',
+      tabTitle: '',
       tabs: [
         {
           label: '接单',
@@ -46,10 +46,13 @@ export default {
     }
   },
   watch: {
-    '$route'(to, from) {
-      let meta = this.$router.currentRoute.meta;
-      this.isSub = meta.isSub || false;
-      this.tabTitle = meta.tabTitle;
+    '$route': {
+      handler() {
+        let meta = this.$router.currentRoute.meta;
+        this.isSub = meta.isSub || false;
+        this.tabTitle = meta.tabTitle;
+      },
+      immediate: true
     }
   },
   methods: {

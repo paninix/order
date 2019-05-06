@@ -85,7 +85,7 @@ export default {
                 .then(res=>{
                     this.$vux.toast.text(res.msg);
                     this.saveGlobalDatas(res.data);
-                    let path = ['/customer', '/seller', '/taker'][res.data-1]
+                    let path = ['/customer', '/seller', '/taker'][res.data-1];
                     this.$router.push(path);
                 }).catch(err=>{
                     this.$vux.toast.text(err.msg);

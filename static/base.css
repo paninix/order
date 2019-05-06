@@ -30,11 +30,11 @@ a{ color:#333; }
 /*共用样式*/
 .s-tag {padding: 1vw;text-align: center;}
 .s-canteen {color: #607D8B;}
-.s-type1 {color: #fff;background: linear-gradient(90deg, #673AB7, #1D62F0);}
-.s-type2 {color: #fff;background: linear-gradient(90deg, #F44336, #E91E63);}
-.s-type3 {color: #fff;background: linear-gradient(90deg, #2196F3, #00BCD4);}
-.s-type4 {color: #fff;background: linear-gradient(90deg, #FF9800, #FF5722);}
-.s-type5 {color: #fff;background: linear-gradient(90deg, #009688, #4CAF50);}
+.s-type1 {color: #fff;background: linear-gradient(90deg, #009688, #4CAF50);}
+.s-type2 {color: #fff;background: linear-gradient(90deg, #FF9800, #FF5722);}
+.s-type3 {color: #fff;background: linear-gradient(90deg, #F44336, #E91E63);}
+.s-type4 {color: #fff;background: linear-gradient(90deg, #673AB7, #1D62F0);}
+.s-type5 {color: #fff;background: linear-gradient(90deg, #2196F3, #00BCD4);}
 .s-type6 {color: #fff;background: linear-gradient(90deg, #CDDC39, #FBC02D);}
 .s-type7 {color: #fff;background: linear-gradient(90deg, #673AB7, #1D62F0);}
 .s-type8 {color: #fff;background: linear-gradient(90deg, #673AB7, #1D62F0);}
@@ -42,5 +42,5 @@ a{ color:#333; }
 .s-type10 {color: #fff;background: linear-gradient(90deg, #673AB7, #1D62F0);}
 
 /*自定义样式*/
-.avatar { width: 20%; margin-right: 2vw;} .avatar > img {width: 100%;}
+.avatar { width: 30%; margin-right: 2vw;} img {width: 100%;}
 ol { display: flex; } ol>li { flex: 1} ol>li.grow {flex-grow: 1}

@@ -1,21 +1,19 @@
 <template>
   <div class="store-index">
-    <section class="store-bar">
+    <section :class="'store-bar s-type'+store.type" v-show="!isSub">
       <div class="back" @click="goHome()">
         <i class="iconfont icon-back"></i>
       </div>
       <div class="img">
         <img :src="store.avatar" alt="">
       </div>
-      <div class="content">
-        <h2 class="title">{{store.shopname}}</h2>
-        <div class="infor">
-          <span>评价{{store.rate}}</span>
-          <span>月售{{store.sale}}单</span>
-        </div>
+      <h2 class="title">{{store.shopname}}</h2>
+      <div class="infor">
+        <span>评价{{store.rate}}</span>
+        <span>月售{{store.sale}}单</span>
       </div>
     </section>
-    <section class="store-tab">
+    <section class="store-tab" v-show="!isSub">
       <ol>
         <li :class="tabActive === index && 'active'" v-for="(item, index) in tabs" :key="index" @click="changeTab(index)">{{item.label}}</li>
       </ol>
@@ -29,6 +27,7 @@ export default {
   name: 'store-index',
   data() {
     return {
+      isSub: false,
       tabActive: 0,
       tabs: [
         {
@@ -47,6 +46,12 @@ export default {
   computed: {
     store() {
       return this.$store.getters.getStoreInfor;
+    }
+  },
+  watch: {
+    '$route'(to, from) {
+      let meta = this.$router.currentRoute.meta;
+      this.isSub = meta.isSub || false;
     }
   },
   methods: {
@@ -70,28 +75,27 @@ export default {
     font-size: rem(14px);
   }
   .store-bar {
-    display: flex;
-    align-items: center;
+    position: relative;
     padding-top: 5vw;
     padding-bottom: 5vw;
-    color: #fff;
-    background: linear-gradient(90deg, #03A9F4,#1D62F0);
+    text-align: center;
     .back {
-      margin-left: 2vw;
-      margin-right: 4vw;
+      position: absolute;
+      top: 5vw;
+      left: 5vw;
       .iconfont {
-        font-size: rem(28px);
+        font-size: rem(24px);
       }
     }
     .img {
-      margin-right: 5vw;
       img {
         width: 20vw;
-        border: rem(6px) solid #fff;
+        // border: rem(6px) solid #fff;
         border-radius: rem(4px);
       }
     }
     .title {
+      margin-top: 3vw;
       margin-bottom: 3vw;
     }
   }

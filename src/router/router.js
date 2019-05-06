@@ -18,14 +18,15 @@ import CustomerIndex from '@/components/customer/index'     // 客户端-首页
 import CustomerOrder from '@/components/customer/order'     // 客户端-点餐页面
 import CustomerOrders from '@/components/customer/orders'   // 客户端-订单页面
 import CustomerAdmin from '@/components/customer/admin'     // 客户端- 用户页面
+import CustomerPay from '@/components/customer/pay'         // 客户端- 支付页面
 
 import StoreIndex from '@/components/store/index'           // 店铺-首页
 import StoreOrder from '@/components/store/order'           // 店铺-点餐页面
 import StoreRate from '@/components/store/rate'             // 店铺-评价页面
 import StoreInfor from '@/components/store/infor'           // 店铺-详情页面
+import StoreGood from '@/components/store/good'             // 店铺-商品页面
 
 export default [
-    { path: '/', redirect: '/login' },
     { path: '/login', name: 'pages-login', component: Login },
     { path: '/guide', name: 'pages-guide', component: Guide }, 
     {
@@ -54,7 +55,8 @@ export default [
             { path: '/', redirect: 'order' }, 
             { path: 'order', name: 'customer-order', component: CustomerOrder, meta: {tabTitle:'点餐'} }, 
             { path: 'orders', name: 'customer-orders', component: CustomerOrders, meta: {tabTitle:'订单'} }, 
-            { path: 'admin', name: 'customer-admin', component: CustomerAdmin, meta: {tabTitle:'我的'} }
+            { path: 'admin', name: 'customer-admin', component: CustomerAdmin, meta: {tabTitle:'我的'} },
+            { path: 'pay', name: 'customer-pay', component: CustomerPay, meta: {tabTitle:'支付', isSub:true} }
         ]
     }, {
         path: '/store',
@@ -64,7 +66,8 @@ export default [
             { path: '/', redirect: 'order' }, 
             { path: 'order', name: 'store-order', component: StoreOrder }, 
             { path: 'rate', name: 'store-rate', component: StoreRate }, 
-            { path: 'infor', name: 'store-infor', component: StoreInfor }
+            { path: 'infor', name: 'store-infor', component: StoreInfor },
+            { path: 'good', name: 'store-good', component: StoreGood, meta: {isSub:true}}
         ]
     }
 ];

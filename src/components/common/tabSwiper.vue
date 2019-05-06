@@ -1,7 +1,7 @@
 <template>
   <div class="tab-swiper">
-      <tabbar @on-index-change="onSwiper" style="position: fixed">
-        <tabbar-item v-for="(item, index) in tabs" :key="index" :selected="index === 0">
+      <tabbar style="position: fixed">
+        <tabbar-item v-for="(item, index) in tabs" :key="index" :selected="index === 0" @on-item-click="onSwiper">
           <i slot="icon" class="iconfont" :class="item.icon"></i>
           <span slot="label">{{item.label}}</span>
         </tabbar-item>
