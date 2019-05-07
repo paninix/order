@@ -94,11 +94,11 @@ export default {
         },
         // 存储登录信息
         saveGlobalDatas(status) {
-            let globalDatas = {
+            let globalData = {
                 status,
                 phone: this.user.phone
-            };
-            this.$store.dispatch('userGlobalInit', globalDatas);
+            }
+            this.$store.dispatch('setUserGlobalData', globalData);
         }
     },
     created() {

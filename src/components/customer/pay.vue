@@ -36,7 +36,7 @@
       </section>
       <section class="pay-sure">
           <div class="total">合计￥{{cart.total}}</div>
-          <div class="ablepay" v-if="canPay">提交订单</div>
+          <div class="ablepay" v-if="ablePay" @click="subOrder">提交订单</div>
           <div class="unablepay" v-else>余额不足</div>
       </section>
   </div>
@@ -63,6 +63,11 @@ export default {
       },
       ablePay() {
           return this.customer.count - this.cart.total > 0 ? true : false;
+      }
+  },
+  methods: {
+      subOrder() {
+          
       }
   },
   created() {

@@ -1,7 +1,8 @@
 export default {
 	'customer-getInfor': {
-		url: 'customer/getInfor?phone=',
-		method: 'get'
+		url: 'customer/getInfor',
+		method: 'post',
+		meta: true
 	},
 	'customer-updateInfor': {
 		url: 'customer/updateInfor',

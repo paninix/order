@@ -40,11 +40,6 @@ export default {
       ]
     }
   },
-  computed: {
-    phone() {
-      return this.$store.getters.getUserPhone;
-    }
-  },
   watch: {
     '$route': {
       handler() {
@@ -57,7 +52,7 @@ export default {
   },
   methods: {
     getsellerInfor() {
-      sellerCache.getInfor(this.phone)
+      sellerCache.getInfor()
       .then(res=>{
         this.$store.dispatch('sellerInitInfor', res);
       }).catch(err=>{

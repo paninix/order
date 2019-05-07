@@ -1,13 +1,11 @@
 let mongoose = require('mongoose');
 let Seller = mongoose.model('Seller');
 
-var phone = '';   //商家用户标识
-
 module.exports = {
     // 获取用户基本信息
     async getInfor(ctx) {
-        phone = ctx.query.phone;
-        let res = await Seller.findOne({phone}, {_id:0});
+        let phone = ctx.request.body;
+        let res = await Seller.findOne(phone);
         if(res) {
             ctx.body = { 'status':200, 'data': res };
         } else {
@@ -17,7 +15,8 @@ module.exports = {
     // 添加一条用户信息
     async addInfor(ctx) {
         let infor = ctx.request.body;
-        if(await Seller.insertMany(infor)) {
+        let res = await Seller.insertMany(infor);
+        if(res) {
             ctx.body = {'status':200, 'data': {msg:'用户信息提交成功'}};
         } else {
             ctx.body = {'status':100, 'data': {msg:'用户信息提交失败'}};
@@ -26,7 +25,8 @@ module.exports = {
     // 更新用户基本信息
     async updateInfor(ctx) {
         let seller = ctx.request.body;
-        if(await Seller.updateOne(seller)) {
+        let res = await Customer.updateOne({phone:seller.phone},{$set:seller});
+        if(res) {
             ctx.body = {'status':200, 'data': {msg:'用户信息修改成功'}};
         } else {
             ctx.body = {'status':100, 'data': {msg:'用户信息修改失败'}};
@@ -51,8 +51,8 @@ module.exports = {
     },
     // 商家端更新商品列表
     async updateGoodsList(ctx) {
-        let goodsList = ctx.request.body;
-        let res = await Seller.updateOne({phone},{$set:goodsList});
+        let data = ctx.request.body;
+        let res = await Seller.updateOne({phone:data.phone},{$set:data.data});
         if(res) {
             ctx.body = { 'status':200, 'data': {msg: '商品信息更新成功'} };
         } else {

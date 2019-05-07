@@ -6,7 +6,7 @@ import {COMMON} from './types' //从types.js中引用常量
 
  const state = {
     status: 0,      // 登录账号类型：0未登录 1为用户 2为商家 3为骑手
-    phone: '',      // 手机号码（用户标识）
+    phone: ''       // 用户手机号
  }
 
  const getters={
@@ -14,7 +14,7 @@ import {COMMON} from './types' //从types.js中引用常量
     getUserStatus(state) {
         return state.status;
     },
-    // 获取用户手机号
+    // 获取手机号
     getUserPhone(state) {
         return state.phone;
     }
@@ -22,9 +22,9 @@ import {COMMON} from './types' //从types.js中引用常量
 
 const actions = {
     // 用户全局状态初始化
-    userGlobalInit({commit}, globalDatas) {
-        commit(COMMON.USERSTATUS, globalDatas.status);
-        commit(COMMON.USERPHONE, globalDatas.phone);
+    setUserGlobalData({commit}, {status, phone}) {
+        commit(COMMON.USERSTATUS, status);
+        commit(COMMON.USERPHONE, phone);
     }
 }
 

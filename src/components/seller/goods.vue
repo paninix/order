@@ -62,13 +62,13 @@ export default {
       this.typeGoods =  this.goods[index];
     },
     addGood() {
-      this.$router.push({path:'edit', name:'seller-edit', params:{type:'addGood'}});
+      this.$router.push({path:'goodEdit', name:'seller-goodEdit', params:{type:'addGood'}});
     },
     editGood(good) {
-      this.$router.push({path:'edit', name:'seller-edit', params:{type:'editGood', good}});
+      this.$router.push({path:'goodEdit', name:'seller-goodEdit', params:{type:'editGood', good}});
     },
     editType() {
-      this.$router.push({path:'edit', name:'seller-edit', params:{type:'editType'}});
+      this.$router.push({path:'goodEdit', name:'seller-goodEdit', params:{type:'editType'}});
     },
     saveChange() {
       let goodsList = {

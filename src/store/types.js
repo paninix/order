@@ -1,7 +1,7 @@
 // 公共模块
 const COMMON = {
-    USERSTATUS: 'USERSTATUS',               //用户登录状态
-    USERPHONE: 'USERPHONE',                 // 用户手机号
+    USERSTATUS: 'USERSTATUS',               // 用户登录状态
+    USERPHONE: 'USERPHONE'                  // 用户手机号
 }
 
 //客户端模块

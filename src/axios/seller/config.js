@@ -1,7 +1,8 @@
 export default {
 	'seller-getInfor': {
-		url: 'seller/getInfor?phone=',
-		method: 'get'
+		url: 'seller/getInfor',
+		method: 'post',
+		meta: true
 	},
 	'seller-updateInfor': {
 		url: 'seller/updateInfor',
@@ -17,6 +18,7 @@ export default {
 	},
 	'seller-updateGoodsList': {
 		url: 'seller/updateGoodsList',
-		method: 'post'
+		method: 'post',
+		meta: true
 	}
 }

@@ -1,7 +1,7 @@
 export default {
 	'user-login': {
 		url: 'user/login',
-		method: 'post'
+		method: 'post',
 	},
 	'user-register': {
 		url: 'user/register',
