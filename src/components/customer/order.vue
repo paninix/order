@@ -24,21 +24,21 @@
       <divider>推荐商家</divider>
       <div class="panel">
           <ul>
-            <li v-for="(item, index) in shopList" :key="index" @click="intoShop(item)">
+            <li v-for="(item, index) in stores" :key="index" @click="goShop(item._id)">
               <div class="panel-img">
-                <img :src="item.avatar" alt="">
+                <img :src="item.baseInfor.avatar" alt="">
               </div>
               <div class="panel-content">
-                <h3 class="title">{{item.shopname}}</h3>
+                <h3 class="title">{{item.baseInfor.shopname}}</h3>
                 <p class="rate">
-                  <rater v-model="item.rate" disabled :font-size="15"></rater>
-                  <span>{{item.rate}}分</span>
+                  <rater v-model="item.baseInfor.rate" disabled :font-size="15"></rater>
+                  <span>{{item.baseInfor.rate}}分</span>
                 </p>
-                <p class="sale">月售{{item.sale}}单</p>
+                <p class="sale">月售{{item.baseInfor.sale}}单</p>
               </div>
               <div class="panel-tag">
-                <p :class="'s-tag s-type'+item.type">{{item.type | typeFilter}}</p>
-                <p class="s-tag s-canteen">{{item.canteen | canteenFilter}}</p>
+                <p :class="'s-tag s-type'+item.baseInfor.type">{{item.baseInfor.type | typeFilter}}</p>
+                <p class="s-tag s-canteen">{{item.baseInfor.canteen | canteenFilter}}</p>
               </div>
             </li>
           </ul>
@@ -124,7 +124,7 @@ export default {
         canteen: 0, //选择的食堂
         type: 0 // 选择的类型
       },
-      shopList: []
+      stores: []
     }
   },
   filters: {
@@ -140,23 +140,28 @@ export default {
   methods: {
     doSelect(name, value) {
       this.selected[name] = value+1;
-      this.getSellersList();
+      this.getStoresList();
     },
-    getSellersList() {
-      sellerCache.getList(this.selected)
+    getStoresList() {
+      sellerCache.getStoresList(this.selected)
       .then(res=>{
-        this.shopList = res;
+        this.stores = res;
       }).catch(err=>{
          this.$vux.toast.text(err.msg);
       })
     },
-    intoShop(item) {
-      this.$store.dispatch('setStoreInfor', item)
-      this.$router.push('/store');
+    goShop(id) {
+      sellerCache.getStoreInfor({id})
+      .then(res=>{
+        this.$store.dispatch('setStoreInfor', res);
+        this.$router.push('/store');
+      }).catch(err=>{
+        this.$vux.toast.text(err.msg);
+      });
     }  
   },
   created() {
-    this.getSellersList();
+    this.getStoresList();
   }
 }
 </script>
@@ -182,6 +187,9 @@ export default {
     .vux-divider {
       font-weight: 700;
       font-size: rem(14px);
+    }
+    img {
+      width: 100%;
     }
   }
   .order-canteens {

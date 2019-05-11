@@ -74,8 +74,8 @@ export default {
                 userCache.register(this.user)
                 .then(res=>{
                     this.$vux.toast.text(res.msg);
-                    this.saveGlobalDatas(this.user.status);
-                    this.$router.push('/guide');
+                    this.saveUserStatus(this.user.status);
+                    this.$router.push({path:'/guide',query:{phone:this.user.phone}});
                 }).catch(err=>{
                     this.$vux.toast.text(err.msg);
                 });
@@ -84,21 +84,17 @@ export default {
                 userCache.login(this.user)
                 .then(res=>{
                     this.$vux.toast.text(res.msg);
-                    this.saveGlobalDatas(res.data);
+                    this.saveUserStatus(res.data);
                     let path = ['/customer', '/seller', '/taker'][res.data-1];
-                    this.$router.push(path);
+                    this.$router.push({path,query:{phone:this.user.phone}});
                 }).catch(err=>{
                     this.$vux.toast.text(err.msg);
                 });
             }
         },
-        // 存储登录信息
-        saveGlobalDatas(status) {
-            let globalData = {
-                status,
-                phone: this.user.phone
-            }
-            this.$store.dispatch('setUserGlobalData', globalData);
+        // 存储登录状态
+        saveUserStatus(status) {
+            this.$store.dispatch('setUserStatus', status);
         }
     },
     created() {

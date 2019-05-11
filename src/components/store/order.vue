@@ -3,7 +3,7 @@
     <section class="order-content">
       <section class="order-types">
         <ul>
-          <li :class="typeActive === index && 'active'" v-for="(item,index) in store.goodtypes" :key="index" @click="changeType(index)">{{item.name}}</li>
+          <li :class="typeActive === index && 'active'" v-for="(item,index) in commodity.types" :key="index" @click="changeType(index)">{{item.name}}</li>
         </ul>
       </section>
       <section class="order-goods">
@@ -75,8 +75,8 @@ export default {
     }
   },
   computed: {
-    store() {
-      return this.$store.getters.getStoreInfor;
+    commodity() {
+      return this.$store.getters.getStoreCommodity;
     },
     cart(){
       return this.$store.getters.getCart;
@@ -88,7 +88,7 @@ export default {
   methods: {
     changeType(index) {
       this.typeActive = index;
-      this.goods = this.store.goods[index];
+      this.goods = this.commodity.goods[index];
     },
     toggleCart() {
       this.isShowCart = !this.isShowCart;
@@ -146,7 +146,12 @@ export default {
       padding: 2vw;
     }
     img {
+      width: 100%;
       border-radius: rem(10px);
+    }
+    .avatar { 
+      width: 30%; 
+      margin-right: 2vw;
     }
     .content {
       width: 70%;

@@ -1,19 +1,23 @@
 export default {
-	'seller-getInfor': {
-		url: 'seller/getInfor',
+	'seller-addOne': {
+		url: 'seller/addOne',
+		method: 'post'
+	},
+	'seller-getBaseInfor': {
+		url: 'seller/getBaseInfor',
+		method: 'post'
+	},
+	'seller-updateBaseInfor': {
+		url: 'seller/updateBaseInfor',
 		method: 'post',
 		meta: true
 	},
-	'seller-updateInfor': {
-		url: 'seller/updateInfor',
+	'seller-getStoresList': {
+		url: 'seller/getStoresList',
 		method: 'post'
 	},
-	'seller-addInfor': {
-		url: 'seller/addInfor',
-		method: 'post'
-	},
-	'seller-getList': {
-		url: 'seller/getList',
+	'seller-getStoreInfor': {
+		url: 'seller/getStoreInfor',
 		method: 'post'
 	},
 	'seller-updateGoodsList': {

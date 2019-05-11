@@ -116,8 +116,15 @@ export default {
     .good {
        display: flex;
        padding: 2vw 2vw 0 2vw;
+       .avatar { 
+         width: 30%; 
+         margin-right: 2vw;
+         img {
+           width: 100%;
+         }
+        }
        .content {
-         flex-grow: 1;
+         width: 40%;
          margin-top: 2vw;
          p {
            margin-top: 1vw;
@@ -125,6 +132,7 @@ export default {
          }
        }
        .handle {
+         width: 30%;
          .weui-btn {
            display: block;
            font-size: rem(12px);

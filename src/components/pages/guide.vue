@@ -4,17 +4,18 @@
     <section class="guide-content" v-show="status === '1'">
         <group>
              <x-input :show-clear="false" text-align="right" title="用户名" v-model="customer.username"></x-input>
+             <x-input :show-clear="false" text-align="right" title="用户头像" v-model="customer.avatar"></x-input>
              <x-input :show-clear="false" text-align="right" title="我的地址" v-model="customer.address"></x-input>
              <x-input disabled text-align="right" title="手机号码" v-model="customer.phone"></x-input>
-             <x-button type="warn" :disabled="inputCustomerFormat" @click.native="subCustomerInfor">提交</x-button>
+             <x-button type="warn" :disabled="inputCustomerFormat" @click.native="subCustomerBaseInfor">提交</x-button>
         </group>
     </section>
     <section class="guide-content" v-show="status === '2'">
         <group>
              <x-input :show-clear="false" text-align="right" title="商店名" v-model="seller.shopname"></x-input>
              <x-input :show-clear="false" text-align="right" title="商店地址" v-model="seller.address"></x-input>
-             <x-input :show-clear="false" text-align="right" title="商品类别" v-model="sheet.typeSelected" @on-focus="showSheet('type')"></x-input>
-             <x-input :show-clear="false" text-align="right" title="所在食堂" v-model="sheet.canteenSelected" @on-focus="showSheet('canteen')"></x-input>
+             <x-input readonly :show-clear="false" text-align="right" title="商品类别" v-model="sheet.typeSelected" @on-focus="showSheet('type')"></x-input>
+             <x-input readonly :show-clear="false" text-align="right" title="所在食堂" v-model="sheet.canteenSelected" @on-focus="showSheet('canteen')"></x-input>
              <x-input disabled text-align="right" title="手机号码" v-model="seller.phone"></x-input>
              <x-button type="warn" :disabled="inputSellerFormat" @click.native="subSellerInfor">提交</x-button>
         </group>
@@ -47,7 +48,7 @@ export default {
                 username: '', // 用户名
                 address: '', // 地址
                 count: 0, // 余额
-                avatar: '../../assets/imgs/avatar.png' // 头像
+                avatar: '' // 头像
             },
             // 商家端用户
             seller: {
@@ -93,7 +94,8 @@ export default {
     },
     computed: {
         inputCustomerFormat() {
-            if(this.customer.username && this.customer.address) {
+            let customer = this.customer;
+            if(customer.username && customer.address && customer.avatar) {
                 return false;
             }
             return true;
@@ -107,18 +109,15 @@ export default {
         },
         status() {
             return this.$store.getters.getUserStatus;
-        },
-        phone() {
-            return this.$store.getters.getUserPhone;
         }
     },
     methods: {
         // 提交客户端基本信息
-        subCustomerInfor() {
-            customerCache.addInfor(this.customer)
+        subCustomerBaseInfor() {
+            customerCache.addOne({baseInfor:this.customer})
             .then(res=>{
                 this.$vux.toast.text(res.msg);
-                this.$router.push('/customer');
+                this.$router.push({path:'/customer',query:{phone:this.customer.phone}});
             }).catch(err=>{
                 this.$vux.toast.text(err.msg);
             });
@@ -128,7 +127,7 @@ export default {
             sellerCache.addInfor(this.seller)
             .then(res=>{
                 this.$vux.toast.text(res.msg);
-                this.$router.push('/seller');
+                this.$router.push({path:'/seller',query:{phone:this.seller.phone}});
             }).catch(err=>{
                 this.$vux.toast.text(err.msg);
             });
@@ -155,7 +154,7 @@ export default {
     },
     created() {
         let user = ['customer', 'seller', 'taker'][this.status-1];
-        this[user].phone = this.phone;
+        this[user].phone = this.$route.query.phone;
     }
 }
 </script>

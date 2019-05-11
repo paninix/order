@@ -1,16 +1,16 @@
 <template>
   <div class="store-index">
-    <section :class="'store-bar s-type'+store.type" v-show="!isSub">
+    <section :class="'store-bar s-type'+baseInfor.type" v-show="!isSub">
       <div class="back" @click="goHome()">
         <i class="iconfont icon-back"></i>
       </div>
-      <div class="img">
-        <img :src="store.avatar" alt="">
+      <div class="avatar">
+        <img :src="baseInfor.avatar" alt="">
       </div>
-      <h2 class="title">{{store.shopname}}</h2>
+      <h2 class="title">{{baseInfor.shopname}}</h2>
       <div class="infor">
-        <span>评价{{store.rate}}</span>
-        <span>月售{{store.sale}}单</span>
+        <span>评价{{baseInfor.rate}}</span>
+        <span>月售{{baseInfor.sale}}单</span>
       </div>
     </section>
     <section class="store-tab" v-show="!isSub">
@@ -24,7 +24,6 @@
 <script>
 
 export default {
-  name: 'store-index',
   data() {
     return {
       isSub: false,
@@ -44,8 +43,8 @@ export default {
     }
   },
   computed: {
-    store() {
-      return this.$store.getters.getStoreInfor;
+    baseInfor() {
+      return this.$store.getters.getStoreBaseInfor;
     }
   },
   watch: {
@@ -87,10 +86,9 @@ export default {
         font-size: rem(24px);
       }
     }
-    .img {
+    .avatar {
       img {
         width: 20vw;
-        // border: rem(6px) solid #fff;
         border-radius: rem(4px);
       }
     }

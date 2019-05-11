@@ -15,7 +15,6 @@
 import TabSwiper from '@/components/common/tabSwiper';
 import customerCache from '@/axios/customer/cache';
 export default {
-  name: 'customer-index',
   components: {
     TabSwiper
   },
@@ -51,10 +50,11 @@ export default {
     }
   },
   methods: {
-    getCustomerInfor() {
-      customerCache.getInfor()
+    getBaseInfor(phone) {
+      customerCache.getBaseInfor({phone})
       .then(res=>{
-        this.$store.dispatch('setCustomerInfor', res);
+        this.$store.dispatch('setUserId', res._id);
+        this.$store.dispatch('setCustomerBaseInfor', res.baseInfor);
       }).catch(err=>{
         this.$vux.toast.text(err.msg);
       });
@@ -64,7 +64,10 @@ export default {
     }
   },
   created() {
-    this.getCustomerInfor();
+    let phone = this.$route.query.phone;
+    if(phone) {
+      this.getBaseInfor(phone);
+    }
   }
 }
 </script>

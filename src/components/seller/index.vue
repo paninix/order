@@ -15,7 +15,6 @@
 import TabSwiper from '@/components/common/tabSwiper';
 import sellerCache from '@/axios/seller/cache';
 export default {
-  name: 'seller-index',
   components: {
     TabSwiper
   },
@@ -51,10 +50,11 @@ export default {
     }
   },
   methods: {
-    getsellerInfor() {
-      sellerCache.getInfor()
+    getBaseInfor(phone) {
+      sellerCache.getBaseInfor({phone})
       .then(res=>{
-        this.$store.dispatch('sellerInitInfor', res);
+        this.$store.dispatch('setUserId', res._id);
+        this.$store.dispatch('setSellerBaseInfor', res.baseInfor);
       }).catch(err=>{
         this.$vux.toast.text(err.msg);
       });
@@ -64,7 +64,10 @@ export default {
     }
   },
   created() {
-    this.getsellerInfor();
+    let phone = this.$route.query.phone;
+    if(phone) {
+      this.getBaseInfor(phone);
+    }
   }
 }
 </script>

@@ -12,5 +12,6 @@ module.exports = (function(){
     require('../model/user.js');
     require('../model/customer.js');
     require('../model/seller.js');
+    require('../model/order.js');
     return db;
 })();

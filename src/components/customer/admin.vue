@@ -1,16 +1,16 @@
 <template>
   <div class="customer-admin">
       <section class="admin-avatar">
-          <img src="../../assets/imgs/avatar.png" alt="">
+          <img :src="baseInfor.avatar" alt="">
       </section>
       <section class="admin-infor">
-          <group>
-             <x-input :readonly="!isEdit" :show-clear="false" text-align="right" title="用户名" v-model="customer.username"></x-input>
-             <x-input :readonly="!isEdit" :show-clear="false" text-align="right" title="我的地址" v-model="customer.address"></x-input>
-             <x-input disabled text-align="right" title="手机号码" v-model="customer.phone"></x-input>
-             <x-input disabled text-align="right" title="余额" v-model="customer.count"></x-input>
+          <group title="基本信息">
+             <x-input :readonly="!isEdit" :show-clear="false" text-align="right" title="用户名" v-model="baseInfor.username"></x-input>
+             <x-input :readonly="!isEdit" :show-clear="false" text-align="right" title="我的地址" v-model="baseInfor.address"></x-input>
+             <x-input disabled text-align="right" title="手机号" v-model="baseInfor.phone"></x-input>
+             <x-input disabled text-align="right" title="余额" v-model="baseInfor.count"></x-input>
           </group>
-          <x-button type="primary" v-if="isEdit" @click.native="updateInfor">保存</x-button>
+          <x-button type="primary" v-if="isEdit" @click.native="updateBaseInfor">保存</x-button>
           <x-button type="warn" v-else @click.native="isEdit = true">修改</x-button>
       </section>
   </div>
@@ -33,15 +33,15 @@ export default {
   },
   computed: {
     // 用户基本信息
-    customer() {
-        return this.$store.getters.getCustomerInfor;
+    baseInfor() {
+        return this.$store.getters.getCustomerBaseInfor;
     },
   },
   methods: {
     // 修改用户基本信息
-    updateInfor() {
+    updateBaseInfor() {
         this.isEdit = false;
-        customerCache.updateInfor(this.customer)
+        customerCache.updateBaseInfor({baseInfor:this.baseInfor})
         .then(res=>{
           this.$vux.toast.text(res.msg);
         }).catch(err=>{
@@ -63,14 +63,12 @@ export default {
     color: #fff;
     background: linear-gradient(90deg, #03A9F4,#1D62F0);
     img {
-      width: rem(100px);
-      border-radius: 50%;
+      width: 25vw;
+      height: 25vw;
+      border-radius: 100%;
     }
   }
   .admin-infor {
-    .weui-cells {
-      margin-top: 0;
-    }
     .weui-btn {
       width: 80%;
       margin-top: 10vw;

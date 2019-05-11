@@ -42,5 +42,4 @@ a{ color:#333; }
 .s-type10 {color: #fff;background: linear-gradient(90deg, #673AB7, #1D62F0);}
 
 /*自定义样式*/
-.avatar { width: 30%; margin-right: 2vw;} img {width: 100%;}
 ol { display: flex; } ol>li { flex: 1} ol>li.grow {flex-grow: 1}

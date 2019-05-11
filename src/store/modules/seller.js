@@ -5,25 +5,25 @@
 import {SELLER} from '../types.js' //从types.js中引用常量
 
 const state = {
-    seller: {}
+    sBaseInfor: {}
 }
 
 var getters = {
-   getSellerInfor(state) {
-       return state.seller;
+   getSellerBaseInfor(state) {
+       return state.sBaseInfor;
    }
 }
 
 const actions = {
     // 初始化用户基本信息
-    sellerInitInfor({commit}, seller) {
-        commit(SELLER.SELLERINITINFOR, seller);
+    setSellerBaseInfor({commit, state}, sBaseInfor) {
+        commit(SELLER.SELLERBASEINFOR, sBaseInfor);
     }
 }
 
 const mutations={
-    [SELLER.SELLERINITINFOR](state, seller){
-        state.seller = seller;
+    [SELLER.SELLERBASEINFOR](state, sBaseInfor){
+        state.sBaseInfor = sBaseInfor;
     }
 }
 

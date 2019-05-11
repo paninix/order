@@ -2,16 +2,16 @@
   <div class="seller-manage">
     <section class="manage-panel">
       <div class="panel-img">
-        <img :src="seller.avatar" alt="">
+        <img :src="baseInfor.avatar" alt="">
       </div>
       <div class="panel-content">
-        <h2 class="title">{{seller.shopname}}</h2>
-        <p class="brief">查看店铺详情</p>
+        <h2 class="title">{{baseInfor.shopname}}</h2>
+        <p class="brief" @click="goDetail">查看店铺详情</p>
       </div>
     </section>
     <section class="manage-tab">
       <ul>
-        <li v-for="(item,index) in tabs" :key="index" @click="intoTab(item)">
+        <li v-for="(item,index) in tabs" :key="index" @click="goTab(item)">
           <i class="iconfont" :class="item.icon"></i>
           <p class="label">{{item.label}}</p>
         </li>
@@ -67,13 +67,16 @@ export default {
   },
   computed: {
     // 商家基本信息
-    seller() {
-       return this.$store.getters.getSellerInfor;
+    baseInfor() {
+       return this.$store.getters.getSellerBaseInfor;
     }
   },
   methods: {
-    intoTab(tab) {
+    goTab(tab) {
       this.$router.push(tab.path);
+    },
+    goDetail() {
+      this.$router.push('storeEdit');
     }
   },
   created() {

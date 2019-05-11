@@ -9,7 +9,8 @@ import SellerGoods from '@/components/seller/goods'     // 商家端-管理页�
 import SellerRates from '@/components/seller/rates'     // 商家端-管理页面-评价页面
 import SellerCounts from '@/components/seller/counts'   // 商家端-管理页面-财务页面
 import SellerTakers from '@/components/seller/takers'   // 商家端-管理页面-配送页面
-import SellerGoodEdit from '@/components/seller/goodEdit'   // 商家端-管理页面-商品编辑页面
+import SellerGoodEdit from '@/components/seller/goodEdit'     // 商家端-管理页面-商品编辑页面
+import SellerStoreEdit from '@/components/seller/storeEdit'   // 商家端-管理页面-店铺详情页面
 
 
 import TakerIndex from '@/components/taker/index'           // 骑手端-首页
@@ -31,7 +32,6 @@ export default [
     { path: '/guide', name: 'pages-guide', component: Guide }, 
     {
         path: '/seller',
-        name: 'seller-index',
         component: SellerIndex,
         children: [
             { path: '/', redirect: 'order' }, 
@@ -43,13 +43,13 @@ export default [
             { path: 'counts', name:'seller-counts', component: SellerCounts, meta: {tabTitle:'财务', isSub:true} },
             { path: 'takers', name:'seller-takers', component: SellerTakers, meta: {tabTitle:'配送', isSub:true} },
             { path: 'goodEdit', name:'seller-goodEdit', component: SellerGoodEdit, meta: {tabTitle:'商品编辑', isSub:true} },
+            { path: 'storeEdit', name:'seller-storeEdit', component: SellerStoreEdit, meta: {tabTitle:'店铺详情', isSub:true} },
         ]
     }, {
         path: '/taker',
         component: TakerIndex
     }, {
         path: '/customer',
-        name: 'customer-index',
         component: CustomerIndex,
         children: [
             { path: '/', redirect: 'order' }, 
@@ -60,7 +60,6 @@ export default [
         ]
     }, {
         path: '/store',
-        name: 'store-index',
         component: StoreIndex,
         children: [
             { path: '/', redirect: 'order' }, 

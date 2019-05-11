@@ -12,11 +12,11 @@ axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded
 axios.interceptors.request.use(request=>{
 	if(request.meta) {
 		let data = request.data || false;
-		let phone = store.getters.getUserPhone;
+		let id = store.getters.getUserId;
 		if(data) {
-			request.data = {data, phone}
+			request.data = {data, id};
 		} else {
-			request.data = {phone};
+			request.data = {id};
 		}
 	}
 	return request;

@@ -1,15 +1,15 @@
 export default {
-	'customer-getInfor': {
-		url: 'customer/getInfor',
+	'customer-addOne': {
+		url: 'customer/addOne',
+		method: 'post'
+	},
+	'customer-getBaseInfor': {
+		url: 'customer/getBaseInfor',
+		method: 'post'
+	},
+	'customer-updateBaseInfor': {
+		url: 'customer/updateBaseInfor',
 		method: 'post',
 		meta: true
-	},
-	'customer-updateInfor': {
-		url: 'customer/updateInfor',
-		method: 'post'
-	},
-	'customer-addInfor': {
-		url: 'customer/addInfor',
-		method: 'post'
 	}
 }

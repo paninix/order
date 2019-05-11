@@ -2,21 +2,25 @@ import sendRequest from '../base';
 const CACHE_KEY = 'seller_cache_key'
 
 export default  {
-	// 获取商家信息
-	getInfor(options) {
-		return sendRequest(CACHE_KEY, 'seller-getInfor',options)
-	},
-	// 更新商家信息
-	updateInfor(options) {
-		return sendRequest(CACHE_KEY, 'seller-updateInfor',options)
-	},
 	// 插入一条商家信息
-	addInfor(options) {
-		return sendRequest(CACHE_KEY, 'seller-addInfor',options)
+	addOne(options) {
+		return sendRequest(CACHE_KEY, 'seller-addOne',options)
 	},
-	// 获取商品列表
-	getList(options) {
-		return sendRequest(CACHE_KEY, 'seller-getList',options)
+	// 获取商家基本信息
+	getBaseInfor(options) {
+		return sendRequest(CACHE_KEY, 'seller-getBaseInfor',options)
+	},
+	// 更新商家基本信息
+	updateBaseInfor(options) {
+		return sendRequest(CACHE_KEY, 'seller-updateBaseInfor',options)
+	},
+	// 获取商家列表
+	getStoresList(options) {
+		return sendRequest(CACHE_KEY, 'seller-getStoresList',options)
+	},
+	// 获取商家店铺信息
+	getStoreInfor(options) {
+		return sendRequest(CACHE_KEY, 'seller-getStoreInfor',options)
 	},
 	// 更新商品列表
 	updateGoodsList(options) {
