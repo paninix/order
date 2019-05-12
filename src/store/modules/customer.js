@@ -5,7 +5,7 @@
 import { CUSTOMER } from '../types.js' //从types.js中引用常量
 
 const state = {
-    cBaseInfor: {},
+    customer: {},
     store: {},
     cart: {
         total: 0,
@@ -15,7 +15,7 @@ const state = {
 
 var getters = {
     getCustomerBaseInfor(state) {
-        return state.cBaseInfor;
+        return state.customer.baseInfor;
     },
     getStoreBaseInfor(state) {
         return state.store.baseInfor;
@@ -33,8 +33,8 @@ var getters = {
 
 const actions = {
     // 设置用户信息
-    setCustomerBaseInfor({ commit }, cBaseInfor) {
-        commit(CUSTOMER.CUSTOMERBASEINFOR, cBaseInfor);
+    setCustomerInfor({ commit }, customer) {
+        commit(CUSTOMER.CUSTOMERINFOR, customer);
     },
     // 设置店铺信息
     setStoreInfor({ commit }, store) {
@@ -62,8 +62,8 @@ const actions = {
 }
 
 const mutations = {
-    [CUSTOMER.CUSTOMERBASEINFOR](state, cBaseInfor) {
-        state.cBaseInfor = cBaseInfor;
+    [CUSTOMER.CUSTOMERINFOR](state, customer) {
+        state.customer = customer;
     },
     [CUSTOMER.STOREINFOR](state, store) {
         state.store = store;

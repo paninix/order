@@ -3,8 +3,8 @@ export default {
 		url: 'customer/addOne',
 		method: 'post'
 	},
-	'customer-getBaseInfor': {
-		url: 'customer/getBaseInfor',
+	'customer-getOne': {
+		url: 'customer/getOne',
 		method: 'post'
 	},
 	'customer-updateBaseInfor': {

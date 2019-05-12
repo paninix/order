@@ -55,7 +55,7 @@ export default {
   },
   methods: {
     getOrders() {
-      orderCache.getSellerOrders({sellerId:this.seller._id})
+      orderCache.getSellerOrders()
       .then(res=>{
         this.orders = res;
         this.initOpenStatus();
@@ -73,7 +73,7 @@ export default {
     }
   },
   created() {
-    this.getOrders();
+    // this.getOrders();
   }
 }
 </script>

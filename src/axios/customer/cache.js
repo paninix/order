@@ -5,8 +5,8 @@ export default  {
 	addOne(options) {
 		return sendRequest(CACHE_KEY, 'customer-addOne',options)
 	},
-	getBaseInfor(options) {
-		return sendRequest(CACHE_KEY, 'customer-getBaseInfor',options)
+	getOne(options) {
+		return sendRequest(CACHE_KEY, 'customer-getOne',options)
 	},
 	updateBaseInfor(options) {
 		return sendRequest(CACHE_KEY, 'customer-updateBaseInfor',options)

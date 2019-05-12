@@ -12,14 +12,14 @@ module.exports = {
             ctx.body = {'status':100, 'data': {msg:'信息提交失败'}};
         }
     },
-    // 获取商家基本信息
-    async getBaseInfor(ctx) {
+    // 获取商家信息
+    async getOne(ctx) {
         let data = ctx.request.body;
-        let res = await Seller.findOne({"baseInfor.phone":data.phone},{baseInfor:1});
+        let res = await Seller.findOne({"baseInfor.phone":data.phone});
         if(res) {
             ctx.body = { 'status':200, 'data': res };
         } else {
-            ctx.body = {'status':100, 'data': {msg:'获取基本信息失败'}};
+            ctx.body = {'status':100, 'data': {msg:'信息获取失败'}};
         }
     },
     // 更新商家基本信息
@@ -27,25 +27,15 @@ module.exports = {
         let data = ctx.request.body;
         let res = await Seller.updateOne({_id:data.id},{$set:data.data});
         if(res) {
-            ctx.body = {'status':200, 'data': {msg:'信息修改成功'}};
+            ctx.body = {'status':200, 'data': {msg:'信息更新成功'}};
         } else {
-            ctx.body = {'status':100, 'data': {msg:'信息修改失败'}};
+            ctx.body = {'status':100, 'data': {msg:'信息更新失败'}};
         }
     },
-     // 获取商家店铺信息
-     async getStoreInfor(ctx) {
+    // 更新商品列表
+    async updateCommodity(ctx) {
         let data = ctx.request.body;
-        let res = await Seller.findOne({_id:data.id});
-        if(res) {
-            ctx.body = { 'status':200, 'data': res };
-        } else {
-            ctx.body = {'status':100, 'data': {msg:'获取商家店铺信息失败'}};
-        }
-    },
-    // 商家端更新商品列表
-    async updateGoodsList(ctx) {
-        let data = ctx.request.body;
-        let res = await Seller.updateOne({_id:data._id},{$set:data.data});
+        let res = await Seller.updateOne({_id:data.id},{$set:data.data});
         if(res) {
             ctx.body = { 'status':200, 'data': {msg: '商品信息更新成功'} };
         } else {
@@ -67,6 +57,16 @@ module.exports = {
             ctx.body = { 'status':200, 'data': res };
         } else {
             ctx.body = {'status':100, 'data': {msg: '获取商家列表信息失败'}};
+        }
+    },
+    // 客户端获取商家店铺信息
+    async getStoreInfor(ctx) {
+        let data = ctx.request.body;
+        let res = await Seller.findOne({_id:data.id});
+        if(res) {
+            ctx.body = { 'status':200, 'data': res };
+        } else {
+            ctx.body = {'status':100, 'data': {msg:'获取商家店铺信息失败'}};
         }
     }
 }

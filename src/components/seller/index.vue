@@ -50,11 +50,11 @@ export default {
     }
   },
   methods: {
-    getBaseInfor(phone) {
-      sellerCache.getBaseInfor({phone})
+    getInfor(phone) {
+      sellerCache.getOne({phone})
       .then(res=>{
         this.$store.dispatch('setUserId', res._id);
-        this.$store.dispatch('setSellerBaseInfor', res.baseInfor);
+        this.$store.dispatch('setSellerInfor', res);
       }).catch(err=>{
         this.$vux.toast.text(err.msg);
       });
@@ -66,7 +66,7 @@ export default {
   created() {
     let phone = this.$route.query.phone;
     if(phone) {
-      this.getBaseInfor(phone);
+      this.getInfor(phone);
     }
   }
 }

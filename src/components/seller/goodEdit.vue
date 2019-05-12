@@ -23,7 +23,7 @@
     <section class="edit-type" v-show="type === 'editType'">
         <group title="管理分类">
             <ul>
-                <li v-for="(item, index) in types" :key="index">
+                <li v-for="(item, index) in commodity.types" :key="index">
                     <span class="name">{{item.name}}</span>
                     <span class="handle" @click="subTypeEdit(item)">编辑</span>
                 </li>
@@ -57,7 +57,7 @@ export default {
         },
         goodType: {
             name: '',
-            value: 0,
+            typeid: 0,
         },
         type: '',
         sheet: {
@@ -67,22 +67,25 @@ export default {
     }
   },
   computed: {
-      types() {
-        return this.$store.getters.getSellerInfor.goodtypes;
-      },
-      goods() {
-        return this.$store.getters.getSellerInfor.goods;
-      },
-      inputFormat() {
-          return false;
-      }
+    commodity() {
+        return this.$store.getters.getSellerCommodity;
+    },
+    inputFormat() {
+        return false;
+    }
   },
   methods: {
       subGoodEdit() {
           this.$router.go(-1);
       },
       subGoodAdd() {
-          this.goods[this.goodType.value].push(this.good)
+          let goods = this.commodity.goods[this.goodType.typeid];
+          if(goods.length === 0) { // 该类添加的第一个商品
+            this.good.goodid = (this.goodType.typeid + 1) * 100;
+          } else {
+              this.good.goodid = goods[goods.length-1].goodid + 1;
+          }
+          goods.push(this.good)
           this.$router.go(-1);
       },
       subTypeEdit(type) {
@@ -97,16 +100,19 @@ export default {
           this.$vux.confirm.prompt('', {
             onCancel : () => {},
             onConfirm : (name) => {
-                let value = this.types[this.types.length-1].value+1;
-                this.types.push({name,value});
+                let types = this.commodity.types;
+                let goods = this.commodity.goods;
+                let typeid = types[types.length-1].typeid+1;
+                types.push({name,typeid});
+                goods[typeid] = [];
             }
           });
       },
-      changeSheet(value, name) {
+      changeSheet(typeid, name) {
           this.goodType = {
               name,
-              value
-          }
+              typeid
+          };
       }
   },
   created() {
@@ -115,7 +121,7 @@ export default {
     if(this.type === 'editGood') {
         this.good = params.good;
     } else if(this.type === 'addGood') {
-        this.sheet.menus = this.types.map(item=>{ return item.name });
+        this.sheet.menus = this.commodity.types.map(item=>{ return item.name });
     }
   }
 }

@@ -3,12 +3,12 @@
     <div class="goods-content">
       <div class="goods-type">
       <ul>
-        <li :class="typeActive === index && 'active'" v-for="(item,index) in types" :key="index" @click="changeType(index)">{{item.name}}</li>
+        <li :class="typeActive === index && 'active'" v-for="(item,index) in commodity.types" :key="index" @click="changeType(index)">{{item.name}}</li>
       </ul>
     </div>
     <div class="goods-good">
       <ul>
-        <li v-for="(item,index) in typeGoods" :key="index" class="good">
+        <li v-for="(item,index) in goods" :key="index" class="good">
           <div class="avatar">
             <img :src="item.avatar" alt="">
           </div>
@@ -44,22 +44,19 @@ export default {
   },
   data() {
     return {
-      typeGoods: [],
+      goods: [],
       typeActive: 0
     }
   },
   computed: {
-    types() {
-      return this.$store.getters.getSellerInfor.goodtypes;
-    },
-    goods() {
-      return this.$store.getters.getSellerInfor.goods;
+    commodity() {
+      return this.$store.getters.getSellerCommodity;
     }
   },
   methods: {
     changeType(index) {
       this.typeActive = index;
-      this.typeGoods =  this.goods[index];
+      this.goods =  this.commodity.goods[index];
     },
     addGood() {
       this.$router.push({path:'goodEdit', name:'seller-goodEdit', params:{type:'addGood'}});
@@ -71,11 +68,7 @@ export default {
       this.$router.push({path:'goodEdit', name:'seller-goodEdit', params:{type:'editType'}});
     },
     saveChange() {
-      let goodsList = {
-        goodtypes: this.types,
-        goods: this.goods
-      };
-      sellerCache.updateGoodsList(goodsList)
+      sellerCache.updateCommodity({commodity:this.commodity})
       .then(res=>{
         this.$vux.toast.text(res.msg);
       }).catch(err=>{

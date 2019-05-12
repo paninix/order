@@ -3,12 +3,17 @@ export default {
 		url: 'seller/addOne',
 		method: 'post'
 	},
-	'seller-getBaseInfor': {
-		url: 'seller/getBaseInfor',
+	'seller-getOne': {
+		url: 'seller/getOne',
 		method: 'post'
 	},
 	'seller-updateBaseInfor': {
 		url: 'seller/updateBaseInfor',
+		method: 'post',
+		meta: true
+	},
+	'seller-updateCommodity': {
+		url: 'seller/updateCommodity',
 		method: 'post',
 		meta: true
 	},
@@ -19,10 +24,5 @@ export default {
 	'seller-getStoreInfor': {
 		url: 'seller/getStoreInfor',
 		method: 'post'
-	},
-	'seller-updateGoodsList': {
-		url: 'seller/updateGoodsList',
-		method: 'post',
-		meta: true
 	}
 }

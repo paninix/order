@@ -6,13 +6,13 @@ const COMMON = {
 
 //客户端模块
 const CUSTOMER = {
-    CUSTOMERBASEINFOR: 'CUSTOMERBASEINFOR',   // 用户基本信息
-    STOREINFOR: 'STOREINFOR'                  // 店铺基本信息
+    CUSTOMERINFOR: 'CUSTOMERINFOR',         // 用户基本信息
+    STOREINFOR: 'STOREINFOR'                // 店铺基本信息
 }
 
 // 商家端模块
 const SELLER = {
-    SELLERBASEINFOR: 'SELLERBASEINFOR',       // 商家端基本信息
+    SELLERINFOR: 'SELLERINFOR',       // 商家端基本信息
 }
 
 // 骑手端模块

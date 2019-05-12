@@ -4,7 +4,7 @@ let Customer = require('../controller/customer');
 
 router
 .post('/addOne', Customer.addOne)
-.post('/getBaseInfor', Customer.getBaseInfor)
+.post('/getOne', Customer.getOne)
 .post('/updateBaseInfor', Customer.updateBaseInfor)
 
 module.exports = router;
